@@ -41,6 +41,48 @@ void StringBuilder()
 	cout << s;
 }
 
+//give longest unique substring
+string Solution3(string input)
+{
+	string lngUnique="";
+	string tmpUnique="";
+	int length=0;
+
+
+
+
+	for (int i = 0;i < input.length();i++)
+	{
+		auto pos = tmpUnique.find(input.at(i));
+			if (pos<tmpUnique.length())
+			{
+
+				if (i != (input.length() - 1))
+				{
+					i = i - (length);
+				}
+				length = 0;
+				tmpUnique = "";
+			}
+			else
+			{
+				tmpUnique.append(&input.at(i),1);
+				length++;
+
+			}
+
+			if ((tmpUnique != lngUnique) && (length > lngUnique.length()))
+			{
+				lngUnique = tmpUnique;
+			}
+
+
+	}
+
+	return lngUnique;
+	// abcdabcdefabd
+}
+
 void AllUnique()
 {
 	string uniqStr;
@@ -101,8 +143,10 @@ int main()
 	//Solution2 sol;
 	//sol.Test2();
 
-	Solution4 sol4;
-	sol4.findMedianSortedArrays();
+	//Solution4 sol4;
+	//sol4.findMedianSortedArrays();
+
+	Solution3("abcdabcde");
 
     return 0;
 }
