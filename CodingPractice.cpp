@@ -133,6 +133,139 @@ void testVague()
 
 }
 
+//longest palindrome substring in input
+string Solution5(string input)
+{
+	int length = 0;
+	string tempPalin="";
+	string longestPalin="";
+
+
+	if ((input.length()==1)|| (input.length()==0))
+	{
+		return input;
+	}
+
+	else if (input.length() == 2)
+	{
+		//string tempstr = input;
+		//	reverse(toBeReversed.begin(),
+		//		toBeReversed.end());
+
+		if (input.at(0)==input.at(1))
+		{
+			return input;
+		}
+		else
+		{
+			return input.substr(0, 1);
+		}
+	}
+	else
+	{
+		//abcdabbaa
+		//abdbbddbb 9-6
+		for (int i = 1;i < (input.length());i++)
+		{
+			tempPalin = input.at(0);
+
+			if (((input.length() - i)*2)> longestPalin.length())
+			{
+
+				if (input.at(i) == input.at(i - 1))
+				{
+					length = 2;
+					tempPalin = input.substr(i - 1, length);
+					for (int j = 1;j < input.length();j++)
+					{
+						if (((i - j - 1) < 0) || ((i + j) >= input.length()))
+						{
+							break;
+						}
+						else if ((input.at(i + j) == input.at(i - j - 1)))
+						{
+							length = length + 2;
+							tempPalin = input.substr(i - j - 1, length);
+						}
+						else
+						{
+							break;
+						}
+					}
+
+				}
+
+				//abcdcba
+
+					if ((i+1)<input.length())
+					{
+						if (input.at(i + 1) == input.at(i - 1))
+						{
+							length = 3;
+							tempPalin = input.substr(i - 1, length);
+							for (int j = 2;j < input.length();j++)
+							{
+								if (((i - j) <= 0) || ((i + j) >= input.length()))
+								{
+
+									break;
+								}
+								else if ((input.at(i + j) == input.at(i - j)))
+								{
+									length = length + 2;
+									tempPalin = input.substr(i - j, length);
+
+								}
+
+								else
+								{
+									break;
+								}
+							}
+						}
+
+					}
+					if ((i + 2) < input.length())
+					{
+						if ((input.at(i + 1) == input.at(i)) &&(input.at(i)== input.at(i - 1)))
+						{
+							length = 3;
+							tempPalin = input.substr(i - 1, length);
+							for (int j = i+2;j < input.length();j++)
+							{
+								if (input.at(i) == input.at(j) )
+								{
+									length = length ++;
+									tempPalin = input.substr(i - 1, length);
+
+								}
+
+								else
+								{
+									break;
+								}
+							}
+						}
+					}
+
+				if (tempPalin.length() > longestPalin.length())
+				{
+					longestPalin = tempPalin;
+				}
+
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+
+	return longestPalin;
+	//abcddcba
+
+}
+
 int main()
 {
 	//StringBuilder();
@@ -146,7 +279,9 @@ int main()
 	//Solution4 sol4;
 	//sol4.findMedianSortedArrays();
 
-	Solution3("abcdabcde");
+	//Solution3("abcdabcde");
+
+	Solution5("aaaa");
 
     return 0;
 }
