@@ -134,6 +134,85 @@ void testVague()
 
 }
 
+int Solution8(string str)
+{
+	long overflow = 2147483647;
+	long result = 0;
+	bool negative = false;
+	int temp = -1;
+
+	//str.erase(std::remove(str.begin(), str.end(), ' '),
+   //str.end());
+
+	if ((str.size() >= 2) && (str.at(0) == '-'))
+	{
+		negative = true;
+	}
+
+	for (int i = 0;i<str.size();i++)
+	{
+		if (i == 0 && (str.at(i) == '-' || str.at(i) == '+'))
+		{
+			continue;
+		}
+
+		temp = CharToInt(str.at(i));
+		if (temp == -1) break;
+		else if (temp == 0)
+			if (result == 0) continue;
+			else result = result * 10;
+
+		else
+		{
+			result = (result * 10) + temp;
+		}
+
+	}
+
+	if (negative)
+	{
+		result = result*-1;
+
+		if (result<-2147483647) return 0;
+	}
+
+	if (result > 2147483647) return 0;
+	if (result == 0) return 0;
+
+	return (int)result;
+
+}
+
+int CharToInt(const char c)
+{
+	switch (c)
+	{
+	case '0':
+		return 0;
+	case '1':
+		return 1;
+	case '2':
+		return 2;
+	case '3':
+		return 3;
+	case '4':
+		return 4;
+	case '5':
+		return 5;
+	case '6':
+		return 6;
+	case '7':
+		return 7;
+	case '8':
+		return 8;
+	case '9':
+		return 9;
+	default:
+		return -1;
+	}
+}
+	
+
 int Solution7(int x) {
 
 	long result = 0;
@@ -420,7 +499,7 @@ int main()
 
 	//Solution6("ABCDE", 4);
 
-	Solution7(1534236469);
+	Solution7(-2147483648);
 
     return 0;
 }
