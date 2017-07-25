@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <numeric> // for std::accumulate
+#include<math.h>
 
 //leetcode
 #include "Solution2.h"
@@ -130,6 +131,50 @@ void testVague()
 	int thearray[10];
 	thearray[0] = 0;
 
+
+}
+
+int Solution7(int x) {
+
+	long result = 0;
+	int place = 0;
+	int temp ;
+	bool contin = true, negative = false;
+
+
+	if ((x> INT_MAX) || (x< INT_MIN) || x == 0)
+	{
+		return 0;
+	}
+
+	if (x<0)
+	{
+		negative = true;
+		x = (x*-1);
+	}
+
+	temp = x;
+
+	while (temp >= 10)
+	{
+		temp = temp / 10;
+		place++;
+	}
+
+	while (place>=0)
+	{
+			result = result + ((x % 10)*(pow(10, place)));
+			x = x / 10;
+			place--;
+	}
+	if (negative) result = result *(-1);
+
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		return 0;
+	}
+
+	return result;
 
 }
 
@@ -373,7 +418,9 @@ int main()
 
 	//Solution5("aaaa");
 
-	Solution6("ABCDE", 4);
+	//Solution6("ABCDE", 4);
+
+	Solution7(1534236469);
 
     return 0;
 }
