@@ -133,6 +133,96 @@ void testVague()
 
 }
 
+//zig zag string convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR". PAHNAPLSIIGYIR
+//P   A   H   N
+//A P L S I I G
+//Y   I   R
+
+//0          11         21         31
+//1 7         12 18     22 28      32
+//a          k          u          f
+//b g        l q        v a        g
+//c   h      m   r      w   b      h
+//d     i    n     s    x     c    
+//e       j  o       t  y       d  
+//f          p          z       
+
+//akubglqvchmrwdinsxejotyfpz
+//akubglqvchmrwdinsxejotyfpz
+//a             p
+//b  j          q
+//c    k        r
+//d      l      s
+//e        m    t
+//f          n  u
+//g             v
+
+//A 
+//B 
+//C E
+//D
+string Solution6(string input, int rows)
+{
+	string result;
+	int size = input.length();
+	int columnDeterminer ;
+
+	if (size == 0 || size == 1 || rows == 1 || rows>=size )
+	{
+		return input;
+	}
+
+
+		columnDeterminer = rows + (rows - 2);
+	
+	int appxTowers = size / columnDeterminer;
+
+
+	//appxTowers = size / ((rows*2)-1);
+
+
+
+	//for columns
+	for (int i = 0;i < rows;i++)
+	{
+		int isAccecible;
+
+		if (((i) % (rows - 1)) == 0)
+		{
+			for (int j = 0;j <= (appxTowers);j++)
+			{
+				isAccecible = (columnDeterminer * j)+i ;
+				if (isAccecible < size)
+				{
+					result.push_back(input.at((columnDeterminer * j) +i));
+				}
+				
+			}
+		}
+		else
+		{
+			for (int j = 0;j <= (appxTowers);j++)
+			{
+				 isAccecible = ((columnDeterminer * j) + i) ;
+				if (isAccecible < size)
+				{
+					result.push_back(input.at((columnDeterminer * j) + i));
+				}
+				isAccecible = ((columnDeterminer * j) + i) + (rows - 1);
+
+				if (isAccecible < size)
+				{
+					result.push_back(input.at(((columnDeterminer * j) + i) + (rows - 1)));
+				}
+
+			}
+		}
+
+	}
+
+	return result;
+}
+
 //longest palindrome substring in input
 string Solution5(string input)
 {
@@ -281,7 +371,9 @@ int main()
 
 	//Solution3("abcdabcde");
 
-	Solution5("aaaa");
+	//Solution5("aaaa");
+
+	Solution6("ABCDE", 4);
 
     return 0;
 }
