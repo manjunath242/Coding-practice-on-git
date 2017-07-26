@@ -134,6 +134,83 @@ void testVague()
 
 }
 
+//palindrome number check
+bool Solution9(int x)
+{
+	int x1, x2;
+	int length = 0;
+	unsigned int temp=x;
+	bool even = false;
+
+	if (x >= 0 && x<10)
+	{
+		return true;
+	}
+
+	while (temp>0)
+	{
+		temp = temp / 10;
+		length++;
+	}
+
+	temp = x;
+
+	if (length % 2 == 0)
+	{
+		even = true;
+	}
+		
+		while (temp > 0)
+		{
+			x1 = temp % 10;
+			x2 = temp / (pow(10, length-1));
+
+			if (x1 != x2)
+			{
+				return false;
+			}
+
+			int subtractsum = x2*(pow(10 , length - 2));
+			temp = temp / 10;
+
+			temp = temp - subtractsum;
+			length = length - 2;
+
+			if ((!even) && (length == 1)) break;
+		}
+
+	return true;
+}
+
+int CharToInt(const char c)
+{
+	switch (c)
+	{
+	case '0':
+		return 0;
+	case '1':
+		return 1;
+	case '2':
+		return 2;
+	case '3':
+		return 3;
+	case '4':
+		return 4;
+	case '5':
+		return 5;
+	case '6':
+		return 6;
+	case '7':
+		return 7;
+	case '8':
+		return 8;
+	case '9':
+		return 9;
+	default:
+		return -1;
+	}
+}
+
 int Solution8(string str)
 {
 	long overflow = 2147483647;
@@ -181,35 +258,6 @@ int Solution8(string str)
 
 	return (int)result;
 
-}
-
-int CharToInt(const char c)
-{
-	switch (c)
-	{
-	case '0':
-		return 0;
-	case '1':
-		return 1;
-	case '2':
-		return 2;
-	case '3':
-		return 3;
-	case '4':
-		return 4;
-	case '5':
-		return 5;
-	case '6':
-		return 6;
-	case '7':
-		return 7;
-	case '8':
-		return 8;
-	case '9':
-		return 9;
-	default:
-		return -1;
-	}
 }
 	
 
@@ -499,7 +547,10 @@ int main()
 
 	//Solution6("ABCDE", 4);
 
-	Solution7(-2147483648);
+	//Solution7(-2147483648);
+
+
+	Solution9(-2147483647-1);
 
     return 0;
 }
