@@ -140,43 +140,28 @@ bool Solution9(int x)
 	int x1, x2;
 	int length = 0;
 	unsigned int temp=x;
-	bool even = false;
 
 	if (x >= 0 && x<10)
 	{
 		return true;
 	}
 
-	while (temp>0)
-	{
-		temp = temp / 10;
-		length++;
-	}
-
-	temp = x;
-
-	if (length % 2 == 0)
-	{
-		even = true;
-	}
+	length = ((temp <= 1) ? 1 : log10(temp) + 1);
 		
-		while (temp > 0)
+		while ((temp > 0) &&(length>1))
 		{
 			x1 = temp % 10;
 			x2 = temp / (pow(10, length-1));
 
-			if (x1 != x2)
+			if (x1!=x2)
 			{
 				return false;
 			}
 
-			int subtractsum = x2*(pow(10 , length - 2));
 			temp = temp / 10;
 
-			temp = temp - subtractsum;
+			temp = temp - (x2*(pow(10, length - 2)));
 			length = length - 2;
-
-			if ((!even) && (length == 1)) break;
 		}
 
 	return true;
@@ -550,7 +535,7 @@ int main()
 	//Solution7(-2147483648);
 
 
-	Solution9(-2147483647-1);
+	Solution9(224422);
 
     return 0;
 }
