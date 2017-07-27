@@ -134,6 +134,50 @@ void testVague()
 
 }
 
+bool Solution10(string s, string p) {
+
+	char a, b;
+
+	bool any = false;
+	bool many = false;
+	bool anymany = false;
+
+	if (s == "")
+	{
+	}
+	if (p == "")
+	{
+	}
+
+	for (int i = 0;i < p.size();i++)
+	{
+		for (int j = 0;j < s.size();j++)
+		{
+			if (p.at(i)=='.')
+			{
+				any = true;
+			}
+
+			else if (p.at(i) == '*')
+			{
+				many = true;
+			}
+
+			if (p.at(i) == '.' && p.at(i + 1) == '*')
+			{
+				anymany = true;
+			}
+
+			if (p.at(i)==p.at(j))
+			{
+			
+			}
+
+		}
+
+	}
+}
+
 //palindrome number check
 bool Solution9(int x)
 {
