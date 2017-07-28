@@ -136,46 +136,121 @@ void testVague()
 
 bool Solution10(string s, string p) {
 
-	char a, b;
+	char lastValid;
 
 	bool any = false;
 	bool many = false;
 	bool anymany = false;
+	int sizes=s.size(), sizep=p.size();
 
-	if (s == "")
+
+	if ((s == "" && p==""))
 	{
-	}
-	if (p == "")
-	{
+		return true;
 	}
 
-	for (int i = 0;i < p.size();i++)
+	int i=0, j=0;
+	
+	while (j<sizes && i<sizep)
 	{
-		for (int j = 0;j < s.size();j++)
+		if ((p[i] == s[j]) || ((p[i] == '.') && j<sizes - 1))
 		{
-			if (p.at(i)=='.')
-			{
-				any = true;
-			}
+			lastValid = p[i];
+			j++;
+			i++;
+		}
 
-			else if (p.at(i) == '*')
+		else if (p[sizep]=='*')
+		{
+			if (i > 0)
 			{
-				many = true;
-			}
+				if ((p[i - 1] == '.'))
+				{
+					j++;
+					lastValid = '.';
+				}
 
-			if (p.at(i) == '.' && p.at(i + 1) == '*')
-			{
-				anymany = true;
-			}
+				else if ((p[i - 1] == '*'))
+				{
+					if (lastValid == '.' || lastValid == s[i])
+					{
+						j++;
+					}
+				}
+				else if(p[i-1]==p[j])
+				{
+					j++;
+				}
 
-			if (p.at(i)==p.at(j))
-			{
-			
+				if ((i + 1) < sizep)
+				{
+					if (p[i + 1] == '*')
+					{
+						i++;
+					}
+				}
+
+				else
+				{
+					i++;
+				}
+
 			}
 
 		}
-
 	}
+
+	if (j == sizes)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+	//for (int i = 0;i < p.size();i++)
+	//{
+	//	for (int j = 0;j < s.size();j++)
+	//	{
+	//		if (p.at(i)=='.')
+	//		{
+	//			any = true;
+	//		}
+
+	//		else if (p.at(i) == '*')
+	//		{
+	//			many = true;
+	//			if (i > 0)
+	//			{
+	//				if (p.at(i - 1) == '.' && p.at(i) == '*')
+	//				{
+	//					anymany = true;
+	//				}
+	//				else
+	//				{
+	//					anymany = false;
+	//				}
+	//			}
+	//		}
+
+	//		else if (p.at(i) == p.at(j))
+	//		{
+	//			continue;
+	//		}
+
+	//		else
+	//		{
+	//			any = false;
+	//			anymany = false;
+	//			many = false;
+	//			return false;
+	//		}
+
+
+	//	}
+
+	//}
 }
 
 //palindrome number check
