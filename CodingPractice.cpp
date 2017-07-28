@@ -136,6 +136,25 @@ void testVague()
 
 bool Solution10(string s, string p) {
 
+	//abc.*abc*
+
+	//abcabcdef
+  
+	vector<string> partsSave;
+	int partlength = 0;
+	for (int i = 0;i < p.size();i++)
+	{
+		if (p[i] == '*')
+		{
+			partsSave.push_back(p.substr(i - partlength, partlength));
+			partlength = 0;
+		}
+
+		else partlength++;
+	}
+
+
+
 	char lastValid;
 
 	bool any = false;
@@ -188,13 +207,13 @@ bool Solution10(string s, string p) {
 					{
 						i++;
 					}
+
 				}
 
 				else
 				{
 					i++;
 				}
-
 			}
 
 		}
