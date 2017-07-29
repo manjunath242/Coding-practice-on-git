@@ -142,11 +142,25 @@ bool Solution10(string s, string p) {
   
 	vector<string> partsSave;
 	int partlength = 0;
+
+	char lastValid;
+
+	bool any = false;
+	bool many = false;
+	bool anymany = false;
+	int sizes = s.size(), sizep = p.size();
+
+
 	for (int i = 0;i < p.size();i++)
 	{
 		if (p[i] == '*')
 		{
-			partsSave.push_back(p.substr(i - partlength, partlength));
+			partsSave.push_back(p.substr(i - partlength, partlength+1));
+			partlength = 0;
+		}
+		else if (i==p.size()-1)
+		{
+			partsSave.push_back(p.substr(i - partlength, partlength + 1));
 			partlength = 0;
 		}
 
@@ -154,24 +168,53 @@ bool Solution10(string s, string p) {
 	}
 
 
-
-	char lastValid;
-
-	bool any = false;
-	bool many = false;
-	bool anymany = false;
-	int sizes=s.size(), sizep=p.size();
-
-
 	if ((s == "" && p==""))
 	{
 		return true;
 	}
 
-	int i=0, j=0;
+	int i = 0, j = 0, k = 0;
 	
 	while (j<sizes && i<sizep)
 	{
+		if (p[i] != '*' || p[i] != '.')
+		{
+			if (p[i] == s[j])
+			{
+				j++;
+				i++;
+			}
+		}
+
+		else if (p[i] == '.')
+		{
+
+		}
+
+		else if (p[i] == '*')
+		{
+			if (i > 0 )
+			{
+				if (p[i - 1] == '.')
+				{
+
+				}
+				else if (p[i - 1] == '*')
+				{
+
+				}
+				else if (p[i-1] == s[j])
+				{
+					j++;
+				}
+			}
+
+			if (i < sizep)
+			{
+				if()
+			}
+		}
+
 		if ((p[i] == s[j]) || ((p[i] == '.') && j<sizes - 1))
 		{
 			lastValid = p[i];
@@ -673,7 +716,9 @@ int main()
 	//Solution7(-2147483648);
 
 
-	Solution9(224422);
+	//Solution9(224422);
+
+	Solution10("abcdabbba", "abcc*abb.*ab");
 
     return 0;
 }
