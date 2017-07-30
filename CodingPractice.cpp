@@ -140,7 +140,7 @@ bool Solution10New(string s, string p)
 	vector<string> partsSave;
 	int partlength = 0;
 
-	char lastValid;
+	char lastValidChar=(char) 0;
 
 	bool any = false;
 	bool many = false;
@@ -175,8 +175,11 @@ bool Solution10New(string s, string p)
 		{
 			if (s.find(partsSave[i].substr(0, partsSave[i].size() - 2)) != string::npos) 
 			{
-				s.erase(s.find(partsSave[i].substr(0, partsSave[i].size - 2)), partsSave[i].size() - 1);
-				partsSave[i].erase(partsSave[i].find(partsSave[i].substr(0, partsSave[i].size - 2)));
+				s.erase(s.find(partsSave[i].substr(0, partsSave[i].size()-2)), partsSave[i].size() - 2);
+				//partsSave[i].erase((0, (partsSave[i].size - 2)));
+
+				partsSave[i]= partsSave[i].substr(partsSave[i].size() - 2, partsSave[i].size() - 1);
+
 			}
 
 			else
@@ -190,7 +193,7 @@ bool Solution10New(string s, string p)
 	p = accumulate(begin(partsSave), end(partsSave), s);
 
 	int i = 0, j = 0, k = 0;
-	char lastValidChar;
+	//char lastValidChar=(char) 0;
 
 	while (i < p.size() && j < s.size())
 	{
@@ -256,9 +259,9 @@ bool Solution10New(string s, string p)
 				}
 
 				//normal behaviour for * character for atleast 1 occurance-done
-			  if (s[j] == lastValid || (lastValid=='.'))
+			  if (s[j] == lastValidChar || (lastValidChar =='.'))
 				{
-					if (lastValid=='.')
+					if (lastValidChar =='.')
 					{
 						string temp;
 						if (k < partsSave.size() - 3) {
@@ -316,7 +319,7 @@ bool Solution10New(string s, string p)
 				}
 
 				//normal behaviour for * character for 0 occurance-done
-				else if(s[j]==lastValid)
+				else if(s[j]== lastValidChar)
 				{
 					j++;
 				}
@@ -985,7 +988,9 @@ int main()
 
 	//Solution9(224422);
 
-	Solution10("abcdabbba", "abcc*abb.*ab");
+	//Solution10("abcdabbba", "abcc*abb.*ab");
+
+	Solution10New("aab","c*a*b");
 
     return 0;
 }
