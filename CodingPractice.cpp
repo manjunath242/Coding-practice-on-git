@@ -134,6 +134,202 @@ void testVague()
 
 }
 
+
+bool Solution10New(string s, string p)
+{
+	vector<string> partsSave;
+	int partlength = 0;
+
+	char lastValid;
+
+	bool any = false;
+	bool many = false;
+	bool anymany = false;
+	int sizes = s.size(), sizep = p.size();
+
+	if ((s == "" && p == ""))
+	{
+		return true;
+	}
+
+	// to find all special characters and subdevide them
+	for (int i = 0;i < p.size();i++)
+	{
+		if (p[i] == '*' || p[i] == '.')
+		{
+			partsSave.push_back(p.substr(i - partlength, partlength + 1));
+			partlength = 0;
+		}
+		else if (i == p.size() - 1)
+		{
+			partsSave.push_back(p.substr(i - partlength, partlength + 1));
+			partlength = 0;
+		}
+
+		else partlength++;
+	}
+
+	for (int i = 0;i < partsSave.size();i++)
+	{
+		if (partsSave[i].size()>1)
+		{
+			if (s.find(partsSave[i].substr(0, partsSave[i].size() - 2)) != string::npos) 
+			{
+				s.erase(s.find(partsSave[i].substr(0, partsSave[i].size - 2)), partsSave[i].size() - 1);
+				partsSave[i].erase(partsSave[i].find(partsSave[i].substr(0, partsSave[i].size - 2)));
+			}
+
+			else
+			{
+				return false;
+			}
+		}
+	}
+
+	p = "";
+	p = accumulate(begin(partsSave), end(partsSave), s);
+
+	int i = 0, j = 0, k = 0;
+	char lastValidChar;
+
+	while (i < p.size() && j < s.size())
+	{
+
+		// normal character match for special character
+		if (p[i] != '*' || p[i] != '.')
+		{
+				lastValidChar = p[i];
+				i++;
+		}
+
+
+		//considering one compulsary character present for '.'
+		else if (p[i] == '.')
+	{
+		if ((i < sizep - 1))
+		{
+			//if * present after '.' , handle that differently in the else part
+			if (p[i + 1] != '*')
+			{
+				if (j < sizes - 1)
+				{
+					i++;
+					j++;
+					lastValidChar = '.';
+				}
+				else
+				{
+					return false;
+				}
+			}
+			//handle here for '.*'
+			else
+			{
+				//anycharacter 0 or more occurances-done
+				if ((j - 1) < sizes)
+				{
+					j++;
+					i++;
+					lastValidChar = '.';
+				}
+			}
+
+		}
+	}
+
+		//gets little complex here :(
+		else if (p[i] == '*')
+		{
+			// to check the substring match by parts
+			//k++; of no use for now
+
+
+				//find various special cases
+
+				// double * back to back, so ignore 1 of them-done
+				if (i < (p.size()-1))
+				{
+					if (p[i + 1] == '*')
+					{
+						i++;
+					}
+				}
+
+				//normal behaviour for * character for atleast 1 occurance-done
+			  if (s[j] == lastValid || (lastValid=='.'))
+				{
+					if (lastValid=='.')
+					{
+						string temp;
+						if (k < partsSave.size() - 3) {
+							temp = temp.append(partsSave[k+1], 0).append(partsSave[k + 2], partsSave[k+1].size());
+							if (temp.find(".*") != std::string::npos) {
+								// jump to next '.*'
+								i = i + temp.find(".*");
+							}
+						}
+						
+
+
+						if (k < partsSave.size() - 2) {
+							temp = "";
+							temp = temp.append(partsSave[k+1], 0);
+							if (temp.find(".") != std::string::npos) {
+								// at least one character should be there for '.'
+								if ((j >= s.size()-1))
+								{
+									return false;
+								}
+							}
+						}
+
+						if (k < partsSave.size() - 2) {
+							temp = "";
+							temp = temp.append(partsSave[k + 1], 0);
+							if (temp.find("*") != std::string::npos) {
+
+								char tempValid=NULL;
+								for (int l = temp.find("*");l > i;l--)
+								{
+									if (p[l] != '.' || p[l] != '*')
+									{
+										tempValid = p[l];
+									}
+								}
+
+								if (tempValid != NULL)
+								{
+									//if not found
+									if (!(s.substr(i+1,s.size()-i).find(tempValid) != std::string::npos))
+									{
+										return false;
+									}
+								}
+
+							}
+						}
+
+					}
+			    else  {
+				       j++;
+			          }
+				}
+
+				//normal behaviour for * character for 0 occurance-done
+				else if(s[j]==lastValid)
+				{
+					j++;
+				}
+			
+
+
+		}
+
+
+	}
+
+}
+
 bool Solution10(string s, string p) {
 
 	//abc.*abc*
@@ -150,7 +346,7 @@ bool Solution10(string s, string p) {
 	bool anymany = false;
 	int sizes = s.size(), sizep = p.size();
 
-
+	// to find all special characters and subdevide them
 	for (int i = 0;i < p.size();i++)
 	{
 		if (p[i] == '*' || p[i]=='.')
@@ -178,6 +374,8 @@ bool Solution10(string s, string p) {
 	
 	while (j<sizes && i<sizep)
 	{
+
+		// considering normal character match
 		if (p[i] != '*' || p[i] != '.')
 		{
 			if (p[i] == s[j])
@@ -191,19 +389,39 @@ bool Solution10(string s, string p) {
 			}
 		}
 
+		//considering one compulsary character present for '.'
 		else if (p[i] == '.')
 		{
-			if (j < sizes - 1)
+			if ((i < sizep - 1))
 			{
-				i++;
-				j++;
-			}
-			else
-			{
-				return false;
+				//if * present after '.' , handle that differently in the else part
+				if (p[i + 1] != '*')
+				{
+					if (j < sizes - 1)
+					{
+						i++;
+						j++;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				//handle here for '.*'
+				else
+				{
+					//anycharacter 0 or more occurances-done
+						if ((j - 1) < sizes)
+						{
+							j++;
+						}
+				}
+
 			}
 		}
 
+
+		//gets little complex here :(
 		else if (p[i] == '*')
 		{
 			// to check the substring match by parts
@@ -211,27 +429,32 @@ bool Solution10(string s, string p) {
 
 			if (i > 0 )
 			{
-				if (p[i - 1] == '.')
-				{
+				//find various special cases
 
-				}
-				else if (p[i - 1] == '*')
+				// double * back to back, so ignore 1 of them-done
+				if (i < sizep)
 				{
+					if (p[i + 1] == '*')
+					{
+						i++;
+					}
+				}
 
-				}
-				else if (p[i-1] == s[j])
+				//normal behaviour for * character for atleast 1 occurance-done
+				else if (s[j]==lastValid)
 				{
+					j++;
+				}
+
+				//normal behaviour for * character for 0 occurance-done
+				else
+				{
+					i++;
 					j++;
 				}
 			}
 
-			if (i < sizep)
-			{
-				if (p[i + 1] == '*')
-				{
-					i++;
-				}
-			}
+
 		}
 
 		if ((p[i] == s[j]) || ((p[i] == '.') && j<sizes - 1))
@@ -249,6 +472,25 @@ bool Solution10(string s, string p) {
 				{
 					j++;
 					lastValid = '.';
+
+					if ((k + 1) < partsSave.size() - 1)
+					{
+						//if (partsSave[k + 1].substr('.*')>0)
+						//{
+						//	if (partsSave[k + 1].substr(partsSave[k + 1].size() - 2))
+						//	{
+
+						//	}
+						//}
+						//else if (partsSave[k + 1].substr('*') > 0)
+						//{
+						//	if (partsSave[k + 1].substr(partsSave[k + 1].size() - 1))
+						//	{
+
+						//	}
+						//}
+					}
+
 				}
 
 				else if ((p[i - 1] == '*'))
@@ -279,6 +521,12 @@ bool Solution10(string s, string p) {
 			}
 
 		}
+
+		if (k == partsSave[k].size())
+		{
+			k++;
+		}
+
 	}
 
 	if (j == sizes)
