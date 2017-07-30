@@ -153,7 +153,7 @@ bool Solution10(string s, string p) {
 
 	for (int i = 0;i < p.size();i++)
 	{
-		if (p[i] == '*')
+		if (p[i] == '*' || p[i]=='.')
 		{
 			partsSave.push_back(p.substr(i - partlength, partlength+1));
 			partlength = 0;
@@ -167,6 +167,7 @@ bool Solution10(string s, string p) {
 		else partlength++;
 	}
 
+	partlength = 0;
 
 	if ((s == "" && p==""))
 	{
@@ -184,15 +185,30 @@ bool Solution10(string s, string p) {
 				j++;
 				i++;
 			}
+			else
+			{
+				return false;
+			}
 		}
 
 		else if (p[i] == '.')
 		{
-
+			if (j < sizes - 1)
+			{
+				i++;
+				j++;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		else if (p[i] == '*')
 		{
+			// to check the substring match by parts
+			k++;
+
 			if (i > 0 )
 			{
 				if (p[i - 1] == '.')
@@ -211,7 +227,10 @@ bool Solution10(string s, string p) {
 
 			if (i < sizep)
 			{
-				if()
+				if (p[i + 1] == '*')
+				{
+					i++;
+				}
 			}
 		}
 
