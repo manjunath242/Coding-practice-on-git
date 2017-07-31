@@ -145,7 +145,6 @@ bool Solution10New(string s, string p)
 	bool any = false;
 	bool many = false;
 	bool anymany = false;
-	int sizes = s.size(), sizep = p.size();
 
 	if ((s == "" && p == ""))
 	{
@@ -178,7 +177,7 @@ bool Solution10New(string s, string p)
 				s.erase(s.find(partsSave[i].substr(0, partsSave[i].size()-2)), partsSave[i].size() - 2);
 				//partsSave[i].erase((0, (partsSave[i].size - 2)));
 
-				partsSave[i]= partsSave[i].substr(partsSave[i].size() - 2, partsSave[i].size() - 1);
+				partsSave[i]= partsSave[i].substr(partsSave[i].size() - 2, partsSave[i].size());
 
 			}
 
@@ -190,7 +189,7 @@ bool Solution10New(string s, string p)
 	}
 
 	p = "";
-	p = accumulate(begin(partsSave), end(partsSave), s);
+	p = accumulate(begin(partsSave), end(partsSave), p);
 
 	int i = 0, j = 0, k = 0;
 	//char lastValidChar=(char) 0;
@@ -199,26 +198,37 @@ bool Solution10New(string s, string p)
 	{
 
 		// normal character match for special character
-		if (p[i] != '*' || p[i] != '.')
+		if ((p[i] != '*') && (p[i] != '.') && (p[i]==s[j]))
 		{
 				lastValidChar = p[i];
 				i++;
+				j++;
 		}
 
 
 		//considering one compulsary character present for '.'
 		else if (p[i] == '.')
 	{
-		if ((i < sizep - 1))
+		k++;
+		if ((i < p.size() - 1))
 		{
 			//if * present after '.' , handle that differently in the else part
 			if (p[i + 1] != '*')
 			{
-				if (j < sizes - 1)
+				if (j < s.size() - 1)
 				{
 					i++;
 					j++;
 					lastValidChar = '.';
+
+					string tempmatch;
+					tempmatch = accumulate(begin(partsSave)+k, end(partsSave), tempmatch);
+
+					if (tempmatch.find(".*") != std::string::npos) {
+						// jump to next '.*'
+						i = i + tempmatch.find(".*");
+					}
+
 				}
 				else
 				{
@@ -228,8 +238,8 @@ bool Solution10New(string s, string p)
 			//handle here for '.*'
 			else
 			{
-				//anycharacter 0 or more occurances-done
-				if ((j - 1) < sizes)
+				//anycharacter 0 or more occurj-1 < s.size()ances-done
+				if ((j - 1) < (int)(s.size()))
 				{
 					j++;
 					i++;
@@ -244,7 +254,7 @@ bool Solution10New(string s, string p)
 		else if (p[i] == '*')
 		{
 			// to check the substring match by parts
-			//k++; of no use for now
+			k++; 
 
 
 				//find various special cases
@@ -254,6 +264,7 @@ bool Solution10New(string s, string p)
 				{
 					if (p[i + 1] == '*')
 					{
+						k++;
 						i++;
 					}
 				}
@@ -264,14 +275,15 @@ bool Solution10New(string s, string p)
 					if (lastValidChar =='.')
 					{
 						string temp;
-						if (k < partsSave.size() - 3) {
-							temp = temp.append(partsSave[k+1], 0).append(partsSave[k + 2], partsSave[k+1].size());
-							if (temp.find(".*") != std::string::npos) {
-								// jump to next '.*'
-								i = i + temp.find(".*");
-							}
-						}
+						//if (k < partsSave.size() - 3) {
+						//	temp = temp.append(partsSave[k+1], 0).append(partsSave[k + 2], partsSave[k+1].size());
+						//	if (temp.find(".*") != std::string::npos) {
+						//		// jump to next '.*'
+						//		i = i + temp.find(".*");
+						//	}
+						//}
 						
+
 
 
 						if (k < partsSave.size() - 2) {
@@ -312,24 +324,61 @@ bool Solution10New(string s, string p)
 							}
 						}
 
+						if (j < s.size())
+						{
+							j++;
+						}
+
 					}
 			    else  {
 				       j++;
+					   if (j == s.size() && p[i]=='*')
+					   {
+						   i++;
+					   }
 			          }
 				}
 
 				//normal behaviour for * character for 0 occurance-done
-				else if(s[j]== lastValidChar)
+				else if(s[j]!= lastValidChar)
 				{
-					j++;
+					i++;
 				}
 			
 
 
 		}
 
+		else if(i<(p.size()-1))
+		{
+			if (p[i+1]=='*')
+			{
+				lastValidChar = p[i];
+				i++;
+			}
+			else
+			{
+				// mismatch found
+				return false;
+			}
+		}
+
+		// fits none of above scenario
+		else
+		{
+			return false;
+		}
 
 	}
+	if(i==p.size() && j==s.size())
+	{ 
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 
 }
 
@@ -990,7 +1039,7 @@ int main()
 
 	//Solution10("abcdabbba", "abcc*abb.*ab");
 
-	Solution10New("aab","c*a*b");
+	Solution10New("ab", ".*");
 
     return 0;
 }
