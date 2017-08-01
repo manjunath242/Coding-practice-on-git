@@ -170,7 +170,24 @@ bool Solution10New(string s, string p)
 
 	for (int i = 0;i < partsSave.size();i++)
 	{
-		if (partsSave[i].size()>1)
+		if (partsSave[i].size() == 1)
+		{
+			if ((partsSave[i][partsSave[i].size() - 1] != '*' && partsSave[i][partsSave[i].size() - 1] != '.') && (i == partsSave.size() - 1))
+			{
+				if (s.find(partsSave[i]) != string::npos)
+				{
+					s.erase(s.find(partsSave[i]), partsSave[i].size());
+					partsSave[i].clear();
+
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
+		else if (partsSave[i].size()>1)
 		{
 			if (s.find(partsSave[i].substr(0, partsSave[i].size() - 2)) != string::npos) 
 			{
@@ -191,8 +208,51 @@ bool Solution10New(string s, string p)
 	p = "";
 	p = accumulate(begin(partsSave), end(partsSave), p);
 
-	int i = 0, j = 0, k = 0;
+	
 	//char lastValidChar=(char) 0;
+
+	if (s == "" && p != "")
+	{
+		int i;
+		for (i = 0;i < partsSave.size();i++)
+		{
+			string tempstr = partsSave[i];
+			for (int j = 0;j < tempstr.size();j++)
+			{
+				if (tempstr[tempstr.size() - 1] == '*')
+				{
+
+					if (j < tempstr.size() - 1)
+					{
+						if (tempstr[j + 1] != '*')
+						{
+							return false;
+						}
+					}
+					else if (tempstr[j] == '*')
+					{
+						continue;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
+		if (i == partsSave.size())
+		{
+			return true;
+		}
+	}
+
+
+	int i = 0, j = 0, k = 0;
 
 	while (i < p.size() && j < s.size())
 	{
@@ -209,7 +269,10 @@ bool Solution10New(string s, string p)
 		//considering one compulsary character present for '.'
 		else if (p[i] == '.')
 	{
-		k++;
+		if (i < p.size() - 1)
+		{
+			k++;
+		}
 		if ((i < p.size() - 1))
 		{
 			//if * present after '.' , handle that differently in the else part
@@ -248,13 +311,31 @@ bool Solution10New(string s, string p)
 			}
 
 		}
+		// '.' is the last character, at least 1 character for '.'
+		else if (i == (p.size() - 1))
+		{
+			if (j < s.size())
+			{
+				j++;
+				i++;
+				lastValidChar = '.';
+			}
+		}
+
+		else
+		{
+			return false;
+		}
 	}
 
 		//gets little complex here :(
 		else if (p[i] == '*')
 		{
 			// to check the substring match by parts
-			k++; 
+			if (i < p.size() - 1)
+			{
+				k++;
+			}
 
 
 				//find various special cases
@@ -288,7 +369,7 @@ bool Solution10New(string s, string p)
 
 						if (k < partsSave.size() - 2) {
 							temp = "";
-							temp = temp.append(partsSave[k+1], 0);
+							temp= accumulate(begin(partsSave) + (k+1), end(partsSave), temp);
 							if (temp.find(".") != std::string::npos) {
 								// at least one character should be there for '.'
 								if ((j >= s.size()-1))
@@ -300,7 +381,7 @@ bool Solution10New(string s, string p)
 
 						if (k < partsSave.size() - 2) {
 							temp = "";
-							temp = temp.append(partsSave[k + 1], 0);
+							temp = accumulate(begin(partsSave) + (k + 1), end(partsSave), temp);
 							if (temp.find("*") != std::string::npos) {
 
 								char tempValid=NULL;
@@ -327,6 +408,10 @@ bool Solution10New(string s, string p)
 						if (j < s.size())
 						{
 							j++;
+							if (j == s.size() && p[i] == '*')
+							{
+								i++;
+							}
 						}
 
 					}
@@ -370,6 +455,46 @@ bool Solution10New(string s, string p)
 		}
 
 	}
+
+	string temps, tempp;
+
+	tempp = p.substr(i, (p.size() - i));
+
+	if (j==s.size() && tempp != "")
+	{
+		int m;
+			string tempstr = tempp;
+			//check if * exists at the end
+		if (tempstr[tempstr.size() - 1] == '*')
+		 {
+			for (m = 0;m < tempstr.size();m++)
+			{
+
+					//if another * exists before the * at the end
+					if (tempstr[m] == '*' )
+					{
+						continue;
+					}
+
+					if (m < tempstr.size() - 1)
+					{
+						if (tempstr[m + 1] != '*')
+						{
+							return false;
+						}
+
+					}
+
+			  }
+			}
+	  else
+	  {
+		return false;
+	  }
+		
+			i = i + m;
+	}
+
 	if(i==p.size() && j==s.size())
 	{ 
 		return true;
@@ -1039,7 +1164,7 @@ int main()
 
 	//Solution10("abcdabbba", "abcc*abb.*ab");
 
-	Solution10New("ab", ".*");
+	Solution10New("aaca", "ab*a*c*a");
 
     return 0;
 }
