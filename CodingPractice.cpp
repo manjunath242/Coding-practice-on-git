@@ -140,7 +140,7 @@ bool Solution10New(string s, string p)
 	vector<string> partsSave;
 	int partlength = 0;
 
-	char lastValidChar=(char) 0;
+	char lastValidChar=(char) 0,previousLVC= (char)0;
 
 	bool any = false;
 	bool many = false;
@@ -152,107 +152,106 @@ bool Solution10New(string s, string p)
 	}
 
 	// to find all special characters and subdevide them
-	for (int i = 0;i < p.size();i++)
-	{
-		if (p[i] == '*' || p[i] == '.')
-		{
-			partsSave.push_back(p.substr(i - partlength, partlength + 1));
-			partlength = 0;
-		}
-		else if (i == p.size() - 1)
-		{
-			partsSave.push_back(p.substr(i - partlength, partlength + 1));
-			partlength = 0;
-		}
+	//for (int i = 0;i < p.size();i++)
+	//{
+	//	if (p[i] == '*' || p[i] == '.')
+	//	{
+	//		partsSave.push_back(p.substr(i - partlength, partlength + 1));
+	//		partlength = 0;
+	//	}
+	//	else if (i == p.size() - 1)
+	//	{
+	//		partsSave.push_back(p.substr(i - partlength, partlength + 1));
+	//		partlength = 0;
+	//	}
 
-		else partlength++;
-	}
+	//	else partlength++;
+	//}
 
-	for (int i = 0;i < partsSave.size();i++)
-	{
-		if (partsSave[i].size() == 1)
-		{
-			if ((partsSave[i][partsSave[i].size() - 1] != '*' && partsSave[i][partsSave[i].size() - 1] != '.') && (i == partsSave.size() - 1))
-			{
-				if (s.find(partsSave[i]) != string::npos)
-				{
-					s.erase(s.find(partsSave[i]), partsSave[i].size());
-					partsSave[i].clear();
+	//for (int i = 0;i < partsSave.size();i++)
+	//{
+	//	if (partsSave[i].size() == 1)
+	//	{
+	//		if ((partsSave[i][partsSave[i].size() - 1] != '*' && partsSave[i][partsSave[i].size() - 1] != '.') && (i == partsSave.size() - 1))
+	//		{
+	//			if (s.find(partsSave[i]) != string::npos)
+	//			{
+	//				s.erase(s.find(partsSave[i]), partsSave[i].size());
+	//				partsSave[i].clear();
 
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}
+	//			}
+	//			else
+	//			{
+	//				return false;
+	//			}
+	//		}
+	//	}
 
-		else if (partsSave[i].size()>1)
-		{
-			if (s.find(partsSave[i].substr(0, partsSave[i].size() - 2)) != string::npos) 
-			{
-				s.erase(s.find(partsSave[i].substr(0, partsSave[i].size()-2)), partsSave[i].size() - 2);
-				//partsSave[i].erase((0, (partsSave[i].size - 2)));
+	//	else if (partsSave[i].size()>1)
+	//	{
+	//		if (s.find(partsSave[i].substr(0, partsSave[i].size() - 2)) != string::npos) 
+	//		{
+	//			s.erase(s.find(partsSave[i].substr(0, partsSave[i].size()-2)), partsSave[i].size() - 2);
+	//			//partsSave[i].erase((0, (partsSave[i].size - 2)));
 
-				partsSave[i]= partsSave[i].substr(partsSave[i].size() - 2, partsSave[i].size());
+	//			partsSave[i]= partsSave[i].substr(partsSave[i].size() - 2, partsSave[i].size());
 
-			}
+	//		}
 
-			else
-			{
-				return false;
-			}
-		}
-	}
+	//		else
+	//		{
+	//			return false;
+	//		}
+	//	}
+	//}
 
-	p = "";
-	p = accumulate(begin(partsSave), end(partsSave), p);
+	//p = "";
+	//p = accumulate(begin(partsSave), end(partsSave), p);
 
 	
 	//char lastValidChar=(char) 0;
 
-	if (s == "" && p != "")
-	{
-		int i;
-		for (i = 0;i < partsSave.size();i++)
-		{
-			string tempstr = partsSave[i];
-			for (int j = 0;j < tempstr.size();j++)
-			{
-				if (tempstr[tempstr.size() - 1] == '*')
-				{
+	//if (s == "" && p != "")
+	//{
+	//	int i;
+	//	for (i = 0;i < partsSave.size();i++)
+	//	{
+	//		string tempstr = partsSave[i];
+	//		for (int j = 0;j < tempstr.size();j++)
+	//		{
+	//			if (tempstr[tempstr.size() - 1] == '*')
+	//			{
 
-					if (j < tempstr.size() - 1)
-					{
-						if (tempstr[j + 1] != '*')
-						{
-							return false;
-						}
-					}
-					else if (tempstr[j] == '*')
-					{
-						continue;
-					}
-					else
-					{
-						return false;
-					}
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}
+	//				if (j < tempstr.size() - 1)
+	//				{
+	//					if (tempstr[j + 1] != '*')
+	//					{
+	//						return false;
+	//					}
+	//				}
+	//				else if (tempstr[j] == '*')
+	//				{
+	//					continue;
+	//				}
+	//				else
+	//				{
+	//					return false;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				return false;
+	//			}
+	//		}
+	//	}
 
-		if (i == partsSave.size())
-		{
-			return true;
-		}
-	}
+	//	if (i == partsSave.size())
+	//	{
+	//		return true;
+	//	}
+	//}
 
-
-	int i = 0, j = 0, k = 0;
+	int i = 0, j = 0, k = 0,accumulaterepeated=0,accumulatemeasurer=0;
 
 	while (i < p.size() && j < s.size())
 	{
@@ -260,9 +259,30 @@ bool Solution10New(string s, string p)
 		// normal character match for special character
 		if ((p[i] != '*') && (p[i] != '.') && (p[i]==s[j]))
 		{
+			if (previousLVC != lastValidChar)
+			{
+				previousLVC = lastValidChar;
+			}
 				lastValidChar = p[i];
-				i++;
-				j++;
+				if (i < p.size() - 1)
+				{
+					if (p[i + 1] == '*')
+					{
+						i++;
+					}
+					else
+					{
+						i++;
+						j++;
+					}
+				}
+
+				else
+				{
+					i++;
+					j++;
+				}
+
 		}
 
 
@@ -284,13 +304,13 @@ bool Solution10New(string s, string p)
 					j++;
 					lastValidChar = '.';
 
-					string tempmatch;
-					tempmatch = accumulate(begin(partsSave)+k, end(partsSave), tempmatch);
+					//string tempmatch;
+					//tempmatch = accumulate(begin(partsSave)+k, end(partsSave), tempmatch);
 
-					if (tempmatch.find(".*") != std::string::npos) {
-						// jump to next '.*'
-						i = i + tempmatch.find(".*");
-					}
+					//if (tempmatch.find(".*") != std::string::npos) {
+					//	// jump to next '.*'
+					//	i = i + tempmatch.find(".*");
+					//}
 
 				}
 				else
@@ -351,8 +371,10 @@ bool Solution10New(string s, string p)
 				}
 
 				//normal behaviour for * character for atleast 1 occurance-done
-			  if (s[j] == lastValidChar || (lastValidChar =='.'))
+				if (s[j] == lastValidChar || (lastValidChar == '.'))
 				{
+
+
 					if (lastValidChar =='.')
 					{
 						string temp;
@@ -367,47 +389,48 @@ bool Solution10New(string s, string p)
 
 
 
-						if (k < partsSave.size() - 2) {
-							temp = "";
-							temp= accumulate(begin(partsSave) + (k+1), end(partsSave), temp);
-							if (temp.find(".") != std::string::npos) {
-								// at least one character should be there for '.'
-								if ((j >= s.size()-1))
-								{
-									return false;
-								}
-							}
-						}
+						//if (k < partsSave.size() - 2) {
+						//	temp = "";
+						//	temp= accumulate(begin(partsSave) + (k+1), end(partsSave), temp);
+						//	if (temp.find(".") != std::string::npos) {
+						//		// at least one character should be there for '.'
+						//		if ((j >= s.size()-1))
+						//		{
+						//			return false;
+						//		}
+						//	}
+						//}
 
-						if (k < partsSave.size() - 2) {
-							temp = "";
-							temp = accumulate(begin(partsSave) + (k + 1), end(partsSave), temp);
-							if (temp.find("*") != std::string::npos) {
+						//if (k < partsSave.size() - 2) {
+						//	temp = "";
+						//	temp = accumulate(begin(partsSave) + (k + 1), end(partsSave), temp);
+						//	if (temp.find("*") != std::string::npos) {
 
-								char tempValid=NULL;
-								for (int l = temp.find("*");l > i;l--)
-								{
-									if (p[l] != '.' || p[l] != '*')
-									{
-										tempValid = p[l];
-									}
-								}
+						//		char tempValid=NULL;
+						//		for (int l = temp.find("*");l > i;l--)
+						//		{
+						//			if (p[l] != '.' || p[l] != '*')
+						//			{
+						//				tempValid = p[l];
+						//			}
+						//		}
 
-								if (tempValid != NULL)
-								{
-									//if not found
-									if (!(s.substr(i+1,s.size()-i).find(tempValid) != std::string::npos))
-									{
-										return false;
-									}
-								}
+						//		if (tempValid != NULL)
+						//		{
+						//			//if not found
+						//			if (!(s.substr(i+1,s.size()-i).find(tempValid) != std::string::npos))
+						//			{
+						//				return false;
+						//			}
+						//		}
 
-							}
-						}
+						//	}
+						//}
 
 						if (j < s.size())
 						{
 							j++;
+
 							if (j == s.size() && p[i] == '*')
 							{
 								i++;
@@ -416,7 +439,66 @@ bool Solution10New(string s, string p)
 
 					}
 			    else  {
-				       j++;
+
+					bool breakchar = false;
+
+					if (previousLVC != lastValidChar)
+					{
+						previousLVC = lastValidChar;
+						accumulaterepeated = 1;
+						accumulatemeasurer = 1;
+
+						for (int l = i + 1;l < p.size();l++)
+						{
+							if (breakchar)
+							{
+								break;
+							}
+							if (l < p.size() - 1)
+							{
+								if (p[l] != '*' && p[l + 1] != '*')
+								{
+									breakchar = true;
+								}
+
+								else if (p[l] != lastValidChar &&p[l + 1] == '*')
+								{
+									continue;
+								}
+
+								else if (p[l] == lastValidChar &&p[l + 1] == '*')
+								{
+									i = l + 1;
+								}
+
+								else if (p[l] == lastValidChar &&p[l + 1] != '*')
+								{
+									accumulaterepeated++;
+								}
+							}
+
+							if (l == p.size()-1 && p[l] == lastValidChar)
+							{
+								accumulaterepeated++;
+							}
+
+						}
+					}
+
+
+						   accumulatemeasurer++;
+
+						   if ((accumulatemeasurer > accumulaterepeated) && (i<p.size()-1) &&(j<s.size()-1))
+						   {
+							   i++;
+							   j++;
+						   }
+
+						   else
+						   {
+							   j++;
+						   }
+
 					   if (j == s.size() && p[i]=='*')
 					   {
 						   i++;
@@ -460,10 +542,16 @@ bool Solution10New(string s, string p)
 
 	tempp = p.substr(i, (p.size() - i));
 
-	if (j==s.size() && tempp != "")
+	if (j==s.size() && i<p.size())
 	{
 		int m;
 			string tempstr = tempp;
+
+			while ((p[i - 1] == '*') && (p[i] == lastValidChar) && (i<p.size()))
+			{
+				i++;
+			}
+
 			//check if * exists at the end
 		if (tempstr[tempstr.size() - 1] == '*')
 		 {
@@ -486,13 +574,14 @@ bool Solution10New(string s, string p)
 					}
 
 			  }
+			i = i + m;
 			}
-	  else
+	  else if(i<p.size())
 	  {
 		return false;
 	  }
 		
-			i = i + m;
+			
 	}
 
 	if(i==p.size() && j==s.size())
@@ -1164,7 +1253,8 @@ int main()
 
 	//Solution10("abcdabbba", "abcc*abb.*ab");
 
-	Solution10New("aaca", "ab*a*c*a");
+	Solution10New("aaaaa", "a*a");
+
 
     return 0;
 }
