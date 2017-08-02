@@ -134,6 +134,14 @@ void testVague()
 
 }
 
+void Solution23()
+{
+	 vector<Node*>lists;
+
+	 const int numberofLists = lists.size();
+
+	// int* order=new int[2][2];
+}
 
 bool Solution10New(string s, string p)
 {
@@ -1254,7 +1262,6 @@ int main()
 	//Solution10("abcdabbba", "abcc*abb.*ab");
 
 	Solution10New("aaaaa", "a*a");
-
 
     return 0;
 }
