@@ -134,13 +134,55 @@ void testVague()
 
 }
 
+//1 2
+//3
+//5
+//7
+//8
+
+
 void Solution23()
 {
 	 vector<Node*>lists;
 
-	 const int numberofLists = lists.size();
+	 Node * result;
+	 Node* temp;
+	 Node* resultstart;
+	 Node* nodeptr;
+	 Node* tempnodeptr;
 
-	// int* order=new int[2][2];
+	 int numberofLists = lists.size();
+	// auto array = new int[numberofLists][2];
+
+	 for (int i = 0;i < numberofLists;i++)
+	 {
+		 tempnodeptr = lists[i];
+		 nodeptr = resultstart;
+		 while (tempnodeptr->next != NULL && tempnodeptr !=NULL && lists[i]!=NULL)
+		 {
+			 if (nodeptr == NULL)
+			 {
+				 nodeptr == lists[i];
+				 resultstart = nodeptr;
+			 }
+			 else if(nodeptr->value < resultstart->value)
+			 {
+				 nodeptr->next = resultstart;
+				 resultstart = nodeptr;
+			 }
+
+			 else
+			 {
+				
+
+			 }
+		 }
+
+	 }
+
+
+
+
 }
 
 bool Solution10New(string s, string p)
