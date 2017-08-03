@@ -171,10 +171,21 @@ void Solution23()
 				 resultstart = nodeptr;
 			 }
 
+			 else if((nodeptr->value <tempnodeptr->value) && (tempnodeptr->value < nodeptr->next->value))
+			 {
+				 nodeptr = nodeptr->next;
+			 }
+			
+			 else if (nodeptr->value < tempnodeptr->value && nodeptr->next == NULL)
+			 {
+				 //create a temp node here- not done yet
+				 nodeptr->next = new Node(tempnodeptr->value);
+				 tempnodeptr = tempnodeptr->next;
+			 }
+
 			 else
 			 {
-				
-
+				 nodeptr->next;
 			 }
 		 }
 
