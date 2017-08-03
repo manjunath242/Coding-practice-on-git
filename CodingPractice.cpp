@@ -157,35 +157,56 @@ void Solution23()
 	 for (int i = 0;i < numberofLists;i++)
 	 {
 		 tempnodeptr = lists[i];
-		 nodeptr = resultstart;
+		 if (nodeptr->value > lists[i]->value)
+		 {
+			 nodeptr = resultstart;
+		 }
+
 		 while (tempnodeptr->next != NULL && tempnodeptr !=NULL && lists[i]!=NULL)
 		 {
-			 if (nodeptr == NULL)
+			 // for the first entry to the result list
+			 if (nodeptr == NULL && lists[i]!=NULL)
 			 {
 				 nodeptr == lists[i];
 				 resultstart = nodeptr;
 			 }
+
+			 // if the new entry is less than the start pointer
 			 else if(nodeptr->value < resultstart->value)
 			 {
 				 nodeptr->next = resultstart;
 				 resultstart = nodeptr;
 			 }
 
-			 else if((nodeptr->value <tempnodeptr->value) && (tempnodeptr->value < nodeptr->next->value))
-			 {
-				 nodeptr = nodeptr->next;
-			 }
-			
+			 // insert at the end of the list
 			 else if (nodeptr->value < tempnodeptr->value && nodeptr->next == NULL)
 			 {
 				 //create a temp node here- not done yet
-				 nodeptr->next = new Node(tempnodeptr->value);
+				 Node * temp = new Node(tempnodeptr->value);
+				 nodeptr->next = temp;
+
+				 // move to the next element
 				 tempnodeptr = tempnodeptr->next;
+				 
 			 }
 
+			 // move till you reach the right spot
+			 else if((nodeptr->value <tempnodeptr->value) && (tempnodeptr->value < nodeptr->next->value))
+			 {
+				 
+				 nodeptr = nodeptr->next;
+			 }
+
+			 // insert at he right spot
 			 else
 			 {
-				 nodeptr->next;
+				 //create a temp node here- not done yet
+				 Node * temp = new Node(tempnodeptr->value);
+				 temp->next = nodeptr->next;
+				 nodeptr->next = temp;
+
+				 // move to the next element
+				 tempnodeptr = tempnodeptr->next;
 			 }
 		 }
 
