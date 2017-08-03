@@ -145,41 +145,74 @@ void Solution23()
 {
 	 vector<Node*>lists;
 
+	 Node* temp = new Node(0);
+	 temp->next = new Node(1);
+	 temp->next->next = new Node(2);
+	 temp->next->next->next = new Node(4);
+
+	 lists.push_back(temp);
+	 //delete(temp);
+	 
+	 temp = new Node(3);
+	 temp->next = new Node(4);
+	 temp->next->next = new Node(5);
+
+	 lists.push_back(temp);
+	 //delete(temp);
+
+	 temp = new Node(3);
+	 temp->next = new Node(4);
+	 temp->next->next = new Node(6);
+
+	 lists.push_back(temp);
+	 //delete(temp);
+
+
 	 Node * result;
-	 Node* temp;
-	 Node* resultstart;
-	 Node* nodeptr;
+	 Node* resultstart=NULL;
+	 Node* nodeptr=NULL;
 	 Node* tempnodeptr;
 
 	 int numberofLists = lists.size();
 	// auto array = new int[numberofLists][2];
-
+	 //0 1 2 4, 3 4 5 ,3 4 6
 	 for (int i = 0;i < numberofLists;i++)
 	 {
 		 tempnodeptr = lists[i];
-		 if (nodeptr->value > lists[i]->value)
+
+		 if (resultstart == NULL)
 		 {
+			 resultstart = lists[i];
 			 nodeptr = resultstart;
 		 }
 
-		 while (tempnodeptr->next != NULL && tempnodeptr !=NULL && lists[i]!=NULL)
+
+		 if (nodeptr != NULL && lists[i] != NULL)
 		 {
-			 // for the first entry to the result list
-			 if (nodeptr == NULL && lists[i]!=NULL)
+			 if (nodeptr->value > lists[i]->value)
 			 {
-				 nodeptr == lists[i];
-				 resultstart = nodeptr;
+				 nodeptr = resultstart;
+				 tempnodeptr = tempnodeptr->next;
 			 }
 
+		 while ( tempnodeptr != NULL  && resultstart != NULL)
+		 {
+			 // for the first entry to the result list
+			 //if (nodeptr == NULL && lists[i] != NULL)
+			 //{
+				// nodeptr == lists[i];
+				// resultstart = nodeptr;
+			 //} redundant
+
 			 // if the new entry is less than the start pointer
-			 else if(nodeptr->value < resultstart->value)
+			  if (nodeptr->value < resultstart->value)
 			 {
 				 nodeptr->next = resultstart;
 				 resultstart = nodeptr;
 			 }
 
 			 // insert at the end of the list
-			 else if (nodeptr->value < tempnodeptr->value && nodeptr->next == NULL)
+			 else if (nodeptr->value <= tempnodeptr->value && nodeptr->next == NULL)
 			 {
 				 //create a temp node here- not done yet
 				 Node * temp = new Node(tempnodeptr->value);
@@ -187,13 +220,13 @@ void Solution23()
 
 				 // move to the next element
 				 tempnodeptr = tempnodeptr->next;
-				 
+
 			 }
 
 			 // move till you reach the right spot
-			 else if((nodeptr->value <tempnodeptr->value) && (tempnodeptr->value < nodeptr->next->value))
+			 else if ((nodeptr->value <= tempnodeptr->value) && (tempnodeptr->value <= nodeptr->next->value))
 			 {
-				 
+
 				 nodeptr = nodeptr->next;
 			 }
 
@@ -209,7 +242,7 @@ void Solution23()
 				 tempnodeptr = tempnodeptr->next;
 			 }
 		 }
-
+	 }
 	 }
 
 
@@ -1335,7 +1368,9 @@ int main()
 
 	//Solution10("abcdabbba", "abcc*abb.*ab");
 
-	Solution10New("aaaaa", "a*a");
+	//Solution10New("aaaaa", "a*a");
+
+	Solution23();
 
     return 0;
 }
