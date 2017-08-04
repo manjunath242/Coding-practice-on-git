@@ -141,21 +141,21 @@ void testVague()
 //8
 
 
-void Solution23()
+Node* Solution23()
 {
 	 vector<Node*>lists;
 
-	 Node* temp = new Node(0);
-	 temp->next = new Node(1);
-	 temp->next->next = new Node(2);
-	 temp->next->next->next = new Node(4);
+	 Node* temp = new Node(-1);
+	 temp->next = new Node(-1);
+	 temp->next->next = new Node(-1);
+
 
 	 lists.push_back(temp);
 	 //delete(temp);
 	 
-	 temp = new Node(-1);
-	 temp->next = new Node(4);
-	 temp->next->next = new Node(5);
+	 temp = new Node(-2);
+	 temp->next = new Node(-2);
+	 temp->next->next = new Node(-1);
 
 	 lists.push_back(temp);
 	 //delete(temp);
@@ -168,7 +168,6 @@ void Solution23()
 	 //delete(temp);
 
 
-	 Node * result;
 	 Node* resultstart=NULL;
 	 Node* nodeptr=NULL;
 	 Node* tempnodeptr;
@@ -191,70 +190,73 @@ void Solution23()
 		 }
 
 
-		 if (nodeptr != NULL && lists[i] != NULL)
-		 {
-			 if (nodeptr->value > lists[i]->value)
+			 if (nodeptr != NULL && lists[i] != NULL)
 			 {
-				 nodeptr = resultstart;
+				 if (nodeptr->value > lists[i]->value)
+				 {
+					 nodeptr = resultstart;
+				 }
+
+				 while (tempnodeptr != NULL  && resultstart != NULL)
+				 {
+					 // for the first entry to the result list
+					 //if (nodeptr == NULL && lists[i] != NULL)
+					 //{
+						// nodeptr == lists[i];
+						// resultstart = nodeptr;
+					 //} redundant
+
+					 // if the new entry is less than the start pointer
+					 if (tempnodeptr->value < resultstart->value)
+					 {
+						 Node * temp = new Node(tempnodeptr->value);
+						 temp->next = resultstart;
+						 resultstart = temp;
+
+						 nodeptr = resultstart;
+
+						 // move to the next element
+						 tempnodeptr = tempnodeptr->next;
+					 }
+
+					 // insert at the end of the list
+					 else if (nodeptr->value <= tempnodeptr->value && nodeptr->next == NULL)
+					 {
+						 //create a temp node here- not done yet
+						 Node * temp = new Node(tempnodeptr->value);
+						 nodeptr->next = temp;
+						 nodeptr = nodeptr->next;
+
+						 // move to the next element
+						 tempnodeptr = tempnodeptr->next;
+
+					 }
+
+					 // insert at he right spot
+					 else if ((nodeptr->value <= tempnodeptr->value) && (tempnodeptr->value <= nodeptr->next->value))
+					 {
+
+						 //create a temp node here- not done yet
+						 Node * temp = new Node(tempnodeptr->value);
+						 temp->next = nodeptr->next;
+						 nodeptr->next = temp;
+
+						 nodeptr = nodeptr->next;
+
+						 // move to the next element
+						 tempnodeptr = tempnodeptr->next;
+					 }
+
+					 // move till you reach the right spot
+					 else
+					 {
+						 nodeptr = nodeptr->next;
+					 }
+				 }
 			 }
-
-		 while ( tempnodeptr != NULL  && resultstart != NULL)
-		 {
-			 // for the first entry to the result list
-			 //if (nodeptr == NULL && lists[i] != NULL)
-			 //{
-				// nodeptr == lists[i];
-				// resultstart = nodeptr;
-			 //} redundant
-
-			 // if the new entry is less than the start pointer
-			  if (tempnodeptr->value < resultstart->value)
-			 {
-				 Node * temp = new Node(tempnodeptr->value);
-				 temp->next = resultstart;
-				 resultstart = temp;
-
-				 // move to the next element
-				 tempnodeptr = tempnodeptr->next;
-			 }
-
-			 // insert at the end of the list
-			 else if (nodeptr->value <= tempnodeptr->value && nodeptr->next == NULL)
-			 {
-				 //create a temp node here- not done yet
-				 Node * temp = new Node(tempnodeptr->value);
-				 nodeptr->next = temp;
-				 nodeptr = nodeptr->next;
-
-				 // move to the next element
-				 tempnodeptr = tempnodeptr->next;
-
-			 }
-
-			 // move till you reach the right spot
-			 else if ((nodeptr->value <= tempnodeptr->value) && (tempnodeptr->value <= nodeptr->next->value))
-			 {
-
-				 //create a temp node here- not done yet
-				 Node * temp = new Node(tempnodeptr->value);
-				 temp->next = nodeptr->next;
-				 nodeptr->next = temp;
-
-				 nodeptr = nodeptr->next;
-
-				 // move to the next element
-				 tempnodeptr = tempnodeptr->next;
-			 }
-
-			 // insert at he right spot
-			 else
-			 {
-				 nodeptr = nodeptr->next;
-			 }
-		 }
 	 }
-	 }
 
+	 return resultstart;
 
 
 
