@@ -153,18 +153,18 @@ void Solution23()
 	 lists.push_back(temp);
 	 //delete(temp);
 	 
-	 temp = new Node(3);
+	 temp = new Node(-1);
 	 temp->next = new Node(4);
 	 temp->next->next = new Node(5);
 
 	 lists.push_back(temp);
 	 //delete(temp);
 
-	 temp = new Node(3);
-	 temp->next = new Node(4);
-	 temp->next->next = new Node(6);
+	 //temp = new Node(6);
+	 //temp->next = new Node(7);
+	 //temp->next->next = new Node(8);
 
-	 lists.push_back(temp);
+	 lists.push_back(NULL);
 	 //delete(temp);
 
 
@@ -175,15 +175,19 @@ void Solution23()
 
 	 int numberofLists = lists.size();
 	// auto array = new int[numberofLists][2];
-	 //0 1 2 4, 3 4 5 ,3 4 6
+	 //0 1 2 4, 3 4 5 ,6,7,8
 	 for (int i = 0;i < numberofLists;i++)
 	 {
 		 tempnodeptr = lists[i];
 
 		 if (resultstart == NULL)
 		 {
-			 resultstart = lists[i];
+			 Node * temp = new Node(lists[i]->value);
+			 resultstart = temp;
 			 nodeptr = resultstart;
+
+			 // move to the next element
+			 tempnodeptr = tempnodeptr->next;
 		 }
 
 
@@ -192,7 +196,6 @@ void Solution23()
 			 if (nodeptr->value > lists[i]->value)
 			 {
 				 nodeptr = resultstart;
-				 tempnodeptr = tempnodeptr->next;
 			 }
 
 		 while ( tempnodeptr != NULL  && resultstart != NULL)
@@ -205,10 +208,14 @@ void Solution23()
 			 //} redundant
 
 			 // if the new entry is less than the start pointer
-			  if (nodeptr->value < resultstart->value)
+			  if (tempnodeptr->value < resultstart->value)
 			 {
-				 nodeptr->next = resultstart;
-				 resultstart = nodeptr;
+				 Node * temp = new Node(tempnodeptr->value);
+				 temp->next = resultstart;
+				 resultstart = temp;
+
+				 // move to the next element
+				 tempnodeptr = tempnodeptr->next;
 			 }
 
 			 // insert at the end of the list
@@ -217,6 +224,7 @@ void Solution23()
 				 //create a temp node here- not done yet
 				 Node * temp = new Node(tempnodeptr->value);
 				 nodeptr->next = temp;
+				 nodeptr = nodeptr->next;
 
 				 // move to the next element
 				 tempnodeptr = tempnodeptr->next;
@@ -227,19 +235,21 @@ void Solution23()
 			 else if ((nodeptr->value <= tempnodeptr->value) && (tempnodeptr->value <= nodeptr->next->value))
 			 {
 
-				 nodeptr = nodeptr->next;
-			 }
-
-			 // insert at he right spot
-			 else
-			 {
 				 //create a temp node here- not done yet
 				 Node * temp = new Node(tempnodeptr->value);
 				 temp->next = nodeptr->next;
 				 nodeptr->next = temp;
 
+				 nodeptr = nodeptr->next;
+
 				 // move to the next element
 				 tempnodeptr = tempnodeptr->next;
+			 }
+
+			 // insert at he right spot
+			 else
+			 {
+				 nodeptr = nodeptr->next;
 			 }
 		 }
 	 }
