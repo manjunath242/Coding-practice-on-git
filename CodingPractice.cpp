@@ -134,12 +134,40 @@ void testVague()
 
 }
 
-//1 2
-//3
-//5
-//7
-//8
+int Solution11(vector<int>& height)
+{
 
+	int volume=0;
+	int maxVolume=0;
+
+	for (int i = 0;i < height.size();i++)
+	{
+		if (i == 0)
+		{
+			volume = height[0] *  height[0];
+		}
+
+		if ((i + 1) < height.size() - 1)
+		{
+			int lesser;
+			if (height[i] < height[i + 1])
+			{
+				lesser = height[i];
+			}
+
+			volume = lesser * lesser;
+
+		}
+
+
+		if (volume > maxVolume)
+		{
+			maxVolume = volume;
+		}
+	}
+
+	return maxVolume;
+}
 
 Node* Solution23()
 {
