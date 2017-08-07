@@ -134,6 +134,32 @@ void testVague()
 
 }
 
+string Solution14(vector<string>& strs) {
+
+	string smallest = "";
+
+	for (int i = 0;i<strs.size();i++)
+	{
+		if (strs[i].size <= smallest.size())
+		{
+			smallest = strs[i];
+
+		}
+	}
+
+	if (smallest != "")
+	{
+		int j = smallest.size();
+		while (1)
+		{
+
+
+		}
+
+	}
+
+}
+
 int Solution11(vector<int>& height)
 {
 
