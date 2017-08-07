@@ -140,7 +140,7 @@ string Solution14(vector<string>& strs) {
 
 	for (int i = 0;i<strs.size();i++)
 	{
-		if (strs[i].size <= smallest.size())
+		if (strs[i].size() <= smallest.size())
 		{
 			smallest = strs[i];
 
@@ -149,14 +149,34 @@ string Solution14(vector<string>& strs) {
 
 	if (smallest != "")
 	{
-		int j = smallest.size();
+		int ssize = smallest.size();
+
 		while (1)
 		{
+			for (int i = 0;i < strs.size();i++)
+			{
+				if ((strs[i].find(smallest.substr(0, smallest.size())) != string::npos) && (strs[i].find(smallest.substr(0, smallest.size())) == 0))
+				{
+					return(smallest.substr(0, smallest.size()));
+				}
 
+				else
+				{
+					ssize--;
+					break;
+				}
+
+				if (ssize == 0)
+				{
+					return "";
+				}
+			}
 
 		}
 
 	}
+
+	else return "";
 
 }
 
