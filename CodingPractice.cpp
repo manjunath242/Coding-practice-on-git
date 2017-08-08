@@ -134,6 +134,21 @@ void testVague()
 
 }
 
+//Closest sum to given num
+int Solution16()
+{
+	int given;
+	vector<int> nums;
+	nums.push_back(-1);
+	nums.push_back(0);
+	nums.push_back(1);
+	nums.push_back(2);
+	nums.push_back(-1);
+	nums.push_back(-4);
+
+
+}
+
 vector<vector<int>> Solution15() {
 
 	vector<int> nums;
