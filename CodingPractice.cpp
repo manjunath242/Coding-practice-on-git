@@ -134,7 +134,16 @@ void testVague()
 
 }
 
-vector<vector<int>> Solution15(vector<int>& nums) {
+vector<vector<int>> Solution15() {
+
+	vector<int> nums;
+
+	nums.push_back(-1);
+	nums.push_back(0);
+	nums.push_back(1);
+	nums.push_back(2);
+	nums.push_back(-1);
+	nums.push_back(-4);
 
 	int searchnum, temp;
 	vector<vector<int>> result;
@@ -1490,7 +1499,10 @@ int main()
 
 	//Solution10New("aaaaa", "a*a");
 
-	Solution23();
+	//Solution23();
+
+	Solution15();
+
 
     return 0;
 }
