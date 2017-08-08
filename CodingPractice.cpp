@@ -136,13 +136,34 @@ void testVague()
 
 vector<vector<int>> Solution15(vector<int>& nums) {
 
+	int searchnum, temp;
+	vector<vector<int>> result;
+	
+
 	for (int i = 0;i < nums.size();i++)
 	{
-		for (int j = i + 1;j < nums.size();j++)
+		for (int j = i + 1;j < nums.size()-2;j++)
 		{
+			searchnum = nums[i] + nums[j];
+			vector<int> set;
 
+			if (std::find(nums.begin()+(j+1), nums.end(), searchnum) != nums.end())
+			{
+				auto it = std::find(nums.begin() + (j + 1), nums.end(), searchnum);
+				auto pos = it - nums.begin()- (j + 1);
+				set.push_back(nums[i]);
+				set.push_back(nums[j]);
+				set.push_back(nums[pos]);
+
+				result.push_back(set);
+			}
+
+			else
+				continue;
 		}
 	}
+
+	return result;
 
 }
 
