@@ -134,6 +134,19 @@ void testVague()
 
 }
 
+vector<vector<int>> Solution15(vector<int>& nums) {
+
+	for (int i = 0;i < nums.size();i++)
+	{
+		for (int j = i + 1;j < nums.size();j++)
+		{
+
+		}
+	}
+
+}
+
+
 string Solution14(vector<string>& strs) {
 
 	string smallest = "";
