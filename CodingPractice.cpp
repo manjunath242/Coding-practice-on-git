@@ -137,16 +137,15 @@ void testVague()
 //Closest sum to given num
 int Solution16()
 {
-	int given;
+	int given=-100;
 	int var1=0, var2=0,var3=0;
-	unsigned int maxDiff;
+    int maxDiff;
 	vector<int> nums;
-	nums.push_back(-1);
-	nums.push_back(0);
 	nums.push_back(1);
-	nums.push_back(2);
-	nums.push_back(-1);
-	nums.push_back(-4);
+	nums.push_back(1);
+	nums.push_back(1);
+	nums.push_back(0);
+
 
 	if (nums.size() > 2)
 	{
@@ -163,32 +162,34 @@ int Solution16()
 			}
 			else if (i == 2)
 			{
-				var2 == nums[i];
-				maxDiff = given - (var1 + var2 + nums[i]);
+				var2 = nums[i];
+				maxDiff = given - (var1 + var2 + var3);
 			}
 
 			if (i > 2)
 			{
-				unsigned int least1, least2, least3;
+			    int least1, least2, least3;
 
-				least1 = nums[i] + var1 + var2;
-				least2 = var3 + nums[i] + var2;
-				least3 = var3 + var1 + nums[i];
+				least1 = given-( nums[i] + var1 + var2);
+				least2 = given-(var3 + nums[i] + var2);
+				least3 = given-(var3 + var1 + nums[i]);
 
 				if ((least1 < least2) && (least1 < least3) &&(least1<maxDiff))
 				{
 					var3 = nums[i];
 				}
 
-				else if ((least2 < least1) && (least2 < least3) && (least1<maxDiff))
+				else if ((least2 < least1) && (least2 < least3) && (least2<maxDiff))
 				{
 					var1 = nums[i];
 				}
 
-				else if ((least3 < least1) && (least3 < least2) && (least1<maxDiff))
+				else if ((least3 < least1) && (least3 < least2) && (least3<maxDiff))
 				{
 					var2 = nums[i];
 				}
+
+				maxDiff = maxDiff = given - (var1 + var2 + var3);
 
 			}
 		}
@@ -1578,7 +1579,7 @@ int main()
 
 	//Solution23();
 
-	Solution15();
+	Solution16();
 
 
     return 0;
