@@ -134,12 +134,15 @@ void testVague()
 
 }
 
-//phone number texting combination
-vector<string> Solution17(string digits) {
-
-	vector<string> result;
-
+void Sol17Mapping(char alphabet ,string digits)
+{
 	vector<string> texts;
+
+	for (int i = 0;i < texts.at((int)digits.at(i)).size();i++)
+	{
+		//return Sol17Mapping();
+	}
+
 	texts.push_back("");
 	texts.push_back("");
 	texts.push_back("abc");
@@ -150,6 +153,27 @@ vector<string> Solution17(string digits) {
 	texts.push_back("pqrs");
 	texts.push_back("tuv");
 	texts.push_back("wxyz");
+
+}
+
+//phone number texting combination
+vector<string> Solution17(string digits) {
+
+	vector<string> result;
+	vector<char> combchars;
+
+	vector<string> texts;
+
+
+	for (int i = 0;i < digits.size() - 1;i++)
+	{
+		for (int j = 0;j < texts.at((int)digits.at(i)).size();i++)
+		{
+
+		}
+	}
+
+
 
 	return result;
 
