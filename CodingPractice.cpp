@@ -134,6 +134,31 @@ void testVague()
 
 }
 
+//phone number texting combination
+vector<string> Solution17(string digits) {
+
+	vector<string> result;
+
+	vector<string> texts;
+	texts.push_back("");
+	texts.push_back("");
+	texts.push_back("abc");
+	texts.push_back("def");
+	texts.push_back("ghi");
+	texts.push_back("jkl");
+	texts.push_back("mno");
+	texts.push_back("pqrs");
+	texts.push_back("tuv");
+	texts.push_back("wxyz");
+
+	return result;
+
+
+
+}
+
+
+
 //Closest sum to given num
 int Solution16()
 {
