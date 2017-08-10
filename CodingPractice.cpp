@@ -134,14 +134,14 @@ void testVague()
 
 }
 
-void Sol17Mapping(char alphabet ,string digits)
+//phone number texting combination
+
+vector<string> Solution17(string digits)
 {
+	vector<string> result;
+	vector<string> temp;
 	vector<string> texts;
 
-	for (int i = 0;i < texts.at((int)digits.at(i)).size();i++)
-	{
-		//return Sol17Mapping();
-	}
 
 	texts.push_back("");
 	texts.push_back("");
@@ -154,32 +154,42 @@ void Sol17Mapping(char alphabet ,string digits)
 	texts.push_back("tuv");
 	texts.push_back("wxyz");
 
-}
-
-//phone number texting combination
-vector<string> Solution17(string digits) {
-
-	vector<string> result;
-	vector<char> combchars;
-
-	vector<string> texts;
-
-
-	for (int i = 0;i < digits.size() - 1;i++)
+	for (int i = 0;i < digits.size();i++)
 	{
-		for (int j = 0;j < texts.at((int)digits.at(i)).size();i++)
+
+		if (digits.size() > 1)
 		{
+			temp = Sol17Mapping(digits.substr(1, digits.size() - 1));
+
+			for (int j = 0;j < temp.size();j++)
+			{
+				for (int k = 0;k < texts.at((int)digits.at(i)).size();k++)
+				{
+					string letters = texts.at((int)digits.at(i));
+
+					result.push_back((letters.at(k) + (temp.at(j))));
+				}
+
+			}
 
 		}
+		else
+		{
+			for (int l = 0;l < texts.at((int)digits.at(i)).size();l++)
+			{
+				string letters = texts.at((int)digits.at(i));
+				temp.push_back({ 1, letters.at(l) } );
+			}
+		}
+
+
+
 	}
-
-
 
 	return result;
 
-
-
 }
+
 
 
 
