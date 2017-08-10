@@ -159,7 +159,7 @@ vector<string> Solution17(string digits)
 
 		if (digits.size() > 1)
 		{
-			temp = Sol17Mapping(digits.substr(1, digits.size() - 1));
+			temp = Solution17(digits.substr(1, digits.size() - 1));
 
 			for (int j = 0;j < temp.size();j++)
 			{
