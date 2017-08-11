@@ -154,18 +154,15 @@ vector<string> Solution17(string digits)
 	texts.push_back("tuv");
 	texts.push_back("wxyz");
 
-	for (int i = 0;i < digits.size();i++)
-	{
-
 		if (digits.size() > 1)
 		{
 			temp = Solution17(digits.substr(1, digits.size() - 1));
 
 			for (int j = 0;j < temp.size();j++)
 			{
-				for (int k = 0;k < texts.at((int)digits.at(i)).size();k++)
+				for (int k = 0;k < texts.at((int)digits.at(0)-48).size();k++)
 				{
-					string letters = texts.at((int)digits.at(i));
+					string letters = texts.at(digits.at(0)-48);
 
 					result.push_back((letters.at(k) + (temp.at(j))));
 				}
@@ -173,18 +170,18 @@ vector<string> Solution17(string digits)
 			}
 
 		}
-		else
+
+		else if(digits.size() == 1)
 		{
-			for (int l = 0;l < texts.at((int)digits.at(i)).size();l++)
+			for (int l = 0;l < texts.at((int)digits.at(0)-48).size();l++)
 			{
-				string letters = texts.at((int)digits.at(i));
-				temp.push_back({ 1, letters.at(l) } );
+				string letters = texts.at(digits.at(0)-48);
+				temp.push_back(string(1,letters.at(l)) );
 			}
+
+			result = temp;
 		}
 
-
-
-	}
 
 	return result;
 
@@ -1638,7 +1635,9 @@ int main()
 
 	//Solution23();
 
-	Solution16();
+	//Solution16();
+
+	Solution17("233");
 
 
     return 0;
