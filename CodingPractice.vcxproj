@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HRank.h" />
     <ClInclude Include="LinkList.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Solution2.h" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CodingPractice.cpp" />
+    <ClCompile Include="HRank.cpp" />
     <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Solution2.cpp" />
