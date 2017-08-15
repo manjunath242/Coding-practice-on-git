@@ -77,7 +77,17 @@ int solveMeFirst(int a, int b) {
 }
 
 //hrank 1
-long aVeryBigSum(int n, vector<long> ar) {
+long aVeryBigSum() {
+	int n=5; vector<long> ar;
+	//1000000001 1000000002 1000000003 1000000004 1000000005
+	ar.push_back(1000000001);
+	ar.push_back(1000000002);
+	ar.push_back(1000000003);
+	ar.push_back(1000000004);
+	ar.push_back(1000000005);
+
+
+
 	// Complete this function
 	long long result = 0;
 
@@ -1715,7 +1725,8 @@ int main()
 
 	//Solution16();
 
-	Solution17("233");
+	//Solution17("233");
+	aVeryBigSum();
 
 
     return 0;
