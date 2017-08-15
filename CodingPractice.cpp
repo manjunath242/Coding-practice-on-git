@@ -14,6 +14,47 @@
 
 using namespace std;
 
+//hrank3
+vector < int > solve(int a0, int a1, int a2, int b0, int b1, int b2) {
+	// Complete this function
+
+	int apoint = 0, bpoint = 0;
+	vector<int> result;
+
+	if (a0>b0)
+	{
+		apoint++;
+	}
+	else if (a0<b0)
+	{
+		bpoint++;
+	}
+
+	if (a1>b1)
+	{
+		apoint++;
+	}
+	else if (a1<b1)
+	{
+		bpoint++;
+	}
+
+	if (a2>b2)
+	{
+		apoint++;
+	}
+	else if (a2<b2)
+	{
+		bpoint++;
+	}
+
+	result.push_back(apoint);
+	result.push_back(bpoint);
+
+	return result;
+
+}
+
 //hrank2
 int simpleArraySum(int n, vector <int> ar) {
 	// Complete this function
