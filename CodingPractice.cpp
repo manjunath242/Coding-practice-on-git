@@ -14,6 +14,22 @@
 
 using namespace std;
 
+//hrank 1
+long aVeryBigSum(int n, vector<long> ar) {
+	// Complete this function
+	long long result = 0;
+
+	for (int i = 0;i<n;i++)
+	{
+		result = result + ar[i];
+	}
+
+	result = result / n;
+
+	return result;
+
+}
+
 
 void Test1()
 {
