@@ -14,6 +14,14 @@
 
 using namespace std;
 
+//hrank2
+int solveMeFirst(int a, int b) {
+	// Hint: Type return a+b; below:
+
+	return (a + b);
+
+}
+
 //hrank 1
 long aVeryBigSum(int n, vector<long> ar) {
 	// Complete this function
