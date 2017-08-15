@@ -15,6 +15,19 @@
 using namespace std;
 
 //hrank2
+int simpleArraySum(int n, vector <int> ar) {
+	// Complete this function
+	int temp = 0;
+
+	for (int i = 0;i<n;i++)
+	{
+		temp = temp + ar[i];
+	}
+
+	return temp;
+}
+
+//hrank2
 int solveMeFirst(int a, int b) {
 	// Hint: Type return a+b; below:
 
