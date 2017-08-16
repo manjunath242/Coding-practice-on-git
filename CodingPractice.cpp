@@ -15,8 +15,26 @@
 using namespace std;
 
 //hrank4
-unsigned int DiagonalDiff(int n, vector< vector<int> > matrix)
+unsigned int DiagonalDiff()
 {
+	int n = 3; vector<int> row;
+	vector< vector<int> > matrix;
+
+	row.push_back(11);
+	row.push_back(2);
+	row.push_back(4);
+	matrix.push_back(row);
+
+	row[0] = 4;
+	row[1] = 5;
+	row[2] = 6;
+	matrix.push_back(row);
+
+	row[0] = 10;
+	row[1] = 8;
+	row[2] = -12;
+	matrix.push_back(row);
+
 	unsigned int result;
 	int temp1 = 0, temp2 = 0;
 
@@ -35,7 +53,10 @@ unsigned int DiagonalDiff(int n, vector< vector<int> > matrix)
 
 			for (int j = n;j>-1;j--)
 			{
-				temp2 = temp2 + (matrix[i][j]);
+				if (i == j)
+				{
+					temp2 = temp2 + (matrix[i][j]);
+				}
 			}
 
 
@@ -1768,7 +1789,9 @@ int main()
 	//Solution16();
 
 	//Solution17("233");
-	aVeryBigSum();
+	//aVeryBigSum();
+
+	DiagonalDiff();
 
 
     return 0;
