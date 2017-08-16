@@ -14,6 +14,47 @@
 
 using namespace std;
 
+//hrank4
+unsigned int DiagonalDiff(int n, vector< vector<int> > matrix)
+{
+	unsigned int result;
+	int temp1 = 0, temp2 = 0;
+
+	if (n != 0)
+	{
+		for (int i = 0;i<n;i++)
+		{
+			for (int j = 0;j<n;j++)
+			{
+				if (i == j)
+				{
+					temp1 = temp1 + (matrix[i][j]);
+				}
+
+			}
+
+			for (int j = n;j>-1;j--)
+			{
+				temp2 = temp2 + (matrix[i][j]);
+			}
+
+
+		}
+
+		result = temp1 - temp2;
+		return result;
+
+	}
+
+	else
+	{
+		return 0;
+	}
+
+}
+
+
+
 //hrank3
 vector < int > solve(int a0, int a1, int a2, int b0, int b1, int b2) {
 	// Complete this function
@@ -75,6 +116,7 @@ int solveMeFirst(int a, int b) {
 	return (a + b);
 
 }
+
 
 //hrank 1
 long aVeryBigSum() {
