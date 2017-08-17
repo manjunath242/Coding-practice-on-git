@@ -14,6 +14,40 @@
 
 using namespace std;
 
+//hrank5
+
+void PlusMinus(int n, vector<int> arr)
+{
+	int a = 0, b = 0, c = 0;
+	float d, e, f;
+
+	for (int i = 0;i<n;i++)
+	{
+		if (arr[i]>0)
+		{
+			a++;
+		}
+		else if (arr[i]<0)
+		{
+			b++;
+		}
+
+		else
+		{
+			c++;
+		}
+
+	}
+
+	d = a / n;
+	e = b / n;
+	f = c / n;
+
+	cout << a;
+	cout << b;
+	cout << c;
+}
+
 //hrank4
  int DiagonalDiff()
 {
