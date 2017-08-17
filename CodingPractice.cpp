@@ -14,8 +14,22 @@
 
 using namespace std;
 
-//hrank5
+//hrank6 #pyramid
 
+void hrank6Staircase()
+{
+	int n=5;
+
+	for (int i = 0;i < n;i++)
+	{
+		std::cout << std::string(n - 1, ' ') << std::endl;
+		std::cout << std::string(i, '#') << std::endl;
+	}
+
+}
+
+
+//hrank5
 void PlusMinus()
 {
 	int n=6; vector<int> arr;
