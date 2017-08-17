@@ -19,16 +19,28 @@ using namespace std;
 void MinMaxSum()
 {
 	vector<int> arr(5);
-	vector<int> sum(5);
+	vector<int> minsum(4);
+	vector<int> maxsum(4);
 	int least=arr[0];
 	int biggest = arr[0];
 
-	while (arr.size() != 1)
+	while (arr.size() != 0)
 	{
 		for (int i = 0;i < arr.size();i++)
 		{
+			if (arr[0] == least)
+			{
+				arr[i] = NULL;
+			}
+
+			if (arr[i] < least)
+			{
+				least = arr[i];
+			}
+
 
 		}
+
 	}
 
 	for (int i = 0;i < 5;i++)
