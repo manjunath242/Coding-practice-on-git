@@ -20,9 +20,9 @@ void hrank6Staircase()
 {
 	int n=5;
 
-	for (int i = 0;i < n;i++)
+	for (int i = 1;i <= n;i++)
 	{
-		std::cout << std::string(n - 1, ' ') << std::endl;
+		std::cout << std::string(n - i, ' ');
 		std::cout << std::string(i, '#') << std::endl;
 	}
 
