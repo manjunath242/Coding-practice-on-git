@@ -28,14 +28,11 @@ void MinMaxSum()
 	{
 		for (int i = 0;i < arr.size();i++)
 		{
-			if (arr[0] == least)
-			{
-				arr[i] = NULL;
-			}
 
 			if (arr[i] < least)
 			{
 				least = arr[i];
+				arr[i] = NULL;
 			}
 
 
