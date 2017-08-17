@@ -14,6 +14,29 @@
 
 using namespace std;
 
+//hrank7 minmaxsum
+
+void MinMaxSum()
+{
+	vector<int> arr(5);
+	vector<int> sum(5);
+	int least=arr[0];
+	int biggest = arr[0];
+
+	while (arr.size() != 1)
+	{
+		for (int i = 0;i < arr.size();i++)
+		{
+
+		}
+	}
+
+	for (int i = 0;i < 5;i++)
+	{
+
+	}
+}
+
 //hrank6 #pyramid
 
 void hrank6Staircase()
