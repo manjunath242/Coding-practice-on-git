@@ -16,8 +16,17 @@ using namespace std;
 
 //hrank5
 
-void PlusMinus(int n, vector<int> arr)
+void PlusMinus()
 {
+	int n=6; vector<int> arr;
+
+	arr.push_back(-4);
+	arr.push_back(3);
+	arr.push_back(-9);
+	arr.push_back(0);
+	arr.push_back(4);
+	arr.push_back(1);
+
 	int a = 0, b = 0, c = 0;
 	float d, e, f;
 
@@ -39,13 +48,13 @@ void PlusMinus(int n, vector<int> arr)
 
 	}
 
-	d = a / n;
-	e = b / n;
-	f = c / n;
-
-	cout << a;
-	cout << b;
-	cout << c;
+	d = (float)a /(float) n;
+	e = (float)b / (float)n;
+	f = (float)c / (float)n;
+	
+	//printf("%0.6lf", d);cout << '\n';
+	//printf("%0.6lf", e);cout << '\n';
+	//printf("%0.6lf", f);cout << '\n';
 }
 
 //hrank4
@@ -1813,7 +1822,9 @@ int main()
 	//Solution17("233");
 	//aVeryBigSum();
 
-	 int temp= DiagonalDiff();
+	 //DiagonalDiff();
+
+	PlusMinus();
 
 	
 
