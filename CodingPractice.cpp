@@ -15,7 +15,7 @@
 using namespace std;
 
 //hrank4
-unsigned int DiagonalDiff()
+ int DiagonalDiff()
 {
 	int n = 3; vector<int> row;
 	vector< vector<int> > matrix;
@@ -35,34 +35,22 @@ unsigned int DiagonalDiff()
 	row[2] = -12;
 	matrix.push_back(row);
 
-	unsigned int result;
+	int result;
 	int temp1 = 0, temp2 = 0;
+	int k=0, l=n-1;
 
 	if (n != 0)
 	{
-		for (int i = 0;i<n;i++)
+
+		while ((k <n) && (l>=0))
 		{
-			for (int j = 0;j<n;j++)
-			{
-				if (i == j)
-				{
-					temp1 = temp1 + (matrix[i][j]);
-				}
-
-			}
-
-			for (int j = n;j>-1;j--)
-			{
-				if (i == j)
-				{
-					temp2 = temp2 + (matrix[i][j]);
-				}
-			}
-
-
+			temp1 = temp1+ matrix[k][k];
+			temp2 =temp2+ matrix[k][l];
+			k++;
+			l--;
 		}
 
-		result = temp1 - temp2;
+		result = abs (temp1 - temp2);
 		return result;
 
 	}
@@ -1791,7 +1779,9 @@ int main()
 	//Solution17("233");
 	//aVeryBigSum();
 
-	DiagonalDiff();
+	 int temp= DiagonalDiff();
+
+	
 
 
     return 0;
