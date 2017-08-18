@@ -258,9 +258,10 @@ void Soution25()
 	Node * afterk;
 
 	Node* result=NULL;
-	Node* resultStart;
+	Node* resultStart ;
 
 	vector <int> inputstack;
+	vector <int> resultvector;
 
 	if (input != nullptr)
 	{
@@ -272,31 +273,38 @@ void Soution25()
 
 		for (int i = 1;i <= k;i++)
 		{
-			if (!result)
-			{
-				resultStart = result;
-
-			}
-
-			result = new Node(inputstack[inputstack.size()-1]);
+			resultvector.push_back(inputstack[inputstack.size()-1]);
 			inputstack.pop_back();
-			result = result->next;
 		}
 
-		if (pointer->next != NULL)
+		if (pointer != NULL)
 		{
-			while (pointer->next != NULL)
+			while (pointer != NULL)
 			{
+				resultvector.push_back(pointer->value);
 				pointer = pointer->next;
-				inputstack.push_back(pointer->value);
 			}
 		}
 
-		for (int i = 0;i < inputstack.size();i++)
+		for (int i = 0;i < resultvector.size();i++)
 		{
-			result = new Node(inputstack[inputstack.size() - 1]);
-			inputstack.pop_back();
+			Node * temp;
+
+			temp = new Node(resultvector[i]);
+
+			if (i == 0)
+			{
+				result = temp;
+				resultStart = result;
+			}
+
+			else
+			{
+				result = temp;
+			}
+
 			result = result->next;
+			 
 		}
 
 
