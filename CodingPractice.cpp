@@ -242,6 +242,60 @@ long aVeryBigSum() {
 
 }
 
+void Soution25()
+{
+	Node * input;
+	Node * pointer = input;
+	int k;
+
+	Node * beforek;
+	Node * afterk;
+
+	Node* result;
+	Node* resultStart;
+
+	vector <int> inputstack;
+
+	if (input != nullptr)
+	{
+		for (int i = 1;i <=k;i++)
+		{
+			inputstack.push_back(pointer->value);
+			pointer = pointer->next;
+		}
+
+		for (int i = 1;i <= k;i++)
+		{
+			if (result == NULL)
+			{
+				resultStart = result;
+
+			}
+
+			result = new Node(inputstack.pop_back);
+			result = result->next;
+		}
+
+		if (pointer->next != NULL)
+		{
+			while (pointer->next != NULL)
+			{
+				pointer = pointer->next;
+				inputstack.push_back(pointer->value);
+			}
+		}
+
+		for (int i = 0;i < inputstack.size();i++)
+		{
+			result = new Node(inputstack.pop_back);
+			result = result->next;
+		}
+
+
+	}
+
+}
+
 
 void Test1()
 {
