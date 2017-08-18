@@ -244,14 +244,20 @@ long aVeryBigSum() {
 
 void Soution25()
 {
-	Node * input;
+	Node * input = new Node(1);
+	input->next = new Node(2);
+	input->next->next = new Node(3);
+	input->next->next->next = new Node(4);
+	input->next->next->next->next = new Node(5);
+
+
 	Node * pointer = input;
-	int k;
+	int k=3;
 
 	Node * beforek;
 	Node * afterk;
 
-	Node* result;
+	Node* result=NULL;
 	Node* resultStart;
 
 	vector <int> inputstack;
@@ -266,13 +272,14 @@ void Soution25()
 
 		for (int i = 1;i <= k;i++)
 		{
-			if (result == NULL)
+			if (!result)
 			{
 				resultStart = result;
 
 			}
 
-			result = new Node(inputstack.pop_back);
+			result = new Node(inputstack[inputstack.size()-1]);
+			inputstack.pop_back();
 			result = result->next;
 		}
 
@@ -287,7 +294,8 @@ void Soution25()
 
 		for (int i = 0;i < inputstack.size();i++)
 		{
-			result = new Node(inputstack.pop_back);
+			result = new Node(inputstack[inputstack.size() - 1]);
+			inputstack.pop_back();
 			result = result->next;
 		}
 
@@ -1924,7 +1932,9 @@ int main()
 
 	 //DiagonalDiff();
 
-	PlusMinus();
+	//PlusMinus();
+
+	Soution25();
 
 	
 
