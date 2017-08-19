@@ -289,6 +289,7 @@ void Soution25()
 		for (int i = 0;i < resultvector.size();i++)
 		{
 			Node * temp;
+			
 
 			temp = new Node(resultvector[i]);
 
@@ -300,10 +301,11 @@ void Soution25()
 
 			else
 			{
-				result = temp;
+				result->next = temp;
+				result = result->next;
 			}
 
-			result = result->next;
+			
 			 
 		}
 
