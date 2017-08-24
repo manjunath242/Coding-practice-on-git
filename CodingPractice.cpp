@@ -249,9 +249,7 @@ void Soution25()
 	input->next->next = new Node(3);
 	input->next->next->next = new Node(4);
 	input->next->next->next->next = new Node(5);
-
-
-	Node * pointer = input;
+		Node * pointer = input;
 	int k=3;
 
 	Node * beforek;
