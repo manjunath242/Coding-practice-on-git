@@ -14,6 +14,23 @@
 
 using namespace std;
 
+//solution30
+vector<int> findSubstring(string s, vector<string>& words) {
+	vector<int> result;
+	return result;
+
+	for (int i = 0;i < words.size();i++)
+	{
+		for (int j = 0;j < (s.size()- words.size());j++)
+		{
+
+		}
+	}
+
+
+}
+
+
 //hrank7 minmaxsum
 
 void MinMaxSum()
