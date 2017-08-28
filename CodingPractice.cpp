@@ -15,9 +15,8 @@
 using namespace std;
 
 //solution30
-vector<int> findSubstring(string s, vector<string>& words) {
+vector<int> Solution30(string s, vector<string>& words) {
 	vector<int> result;
-	return result;
 
 	for (int i = 0;i < words.size();i++)
 	{
@@ -1965,7 +1964,13 @@ int main()
 
 	//PlusMinus();
 
-	Soution25();
+	//Soution25();
+
+	vector <string> inputs;
+	inputs.push_back("foo");
+	inputs.push_back("bar");
+
+	Solution30("barfoothefoobarman", inputs);
 
 	
 
