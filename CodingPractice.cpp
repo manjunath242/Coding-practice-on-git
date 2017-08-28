@@ -23,10 +23,15 @@ vector<int> findSubstring(string s, vector<string>& words) {
 	{
 		for (int j = 0;j < (s.size()- words.size());j++)
 		{
-
+			if (s.substr(j, words[i].size()) == words[i])
+			{
+				result.push_back(j);
+				break;
+			}
 		}
 	}
 
+	return result;
 
 }
 
