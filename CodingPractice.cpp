@@ -17,6 +17,47 @@ using namespace std;
 //TrappingWater
 int Solution42(vector<int>& height) {
 
+	int result=0;
+	int min , max;
+	int maxcount = 0;
+
+	if (height.size > 1)
+	{
+		min = max = height[0];
+
+		for (int i = 0;i < height.size();i++)
+		{
+			if (min<height[i])
+			{
+				min = height[i];
+				result = result + (min - height[i]);
+				maxcount++;
+			}
+
+			if (max>height[i])
+			{
+				if (maxcount > 0)
+				{
+					result = result + (maxcount *(height[i] - max));
+				}
+				max = height[i];
+				maxcount = 0;
+			}
+
+			if (max == height[i])
+			{
+				if (maxcount > 0)
+				{
+					result = result + (maxcount *(height[i] - max));
+				}
+				max = height[i];
+				maxcount = 0;
+			}
+		}
+	}
+
+	return result;
+
 }
 
 //solution30
