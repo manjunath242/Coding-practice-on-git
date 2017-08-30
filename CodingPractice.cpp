@@ -14,6 +14,11 @@
 
 using namespace std;
 
+//TrappingWater
+int Solution42(vector<int>& height) {
+
+}
+
 //solution30
 vector<int> Solution30(string s, vector<string>& words) {
 	vector<int> result;
