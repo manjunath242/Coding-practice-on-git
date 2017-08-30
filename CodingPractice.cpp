@@ -40,7 +40,10 @@ int Solution42(vector<int>& height) {
 				{
 					result = result + (maxcount *(height[i] - max));
 				}
+
+				// start the new iteration onceyou hit biggest wall from the last
 				max = height[i];
+				min = height[i];
 				maxcount = 0;
 			}
 
@@ -50,7 +53,10 @@ int Solution42(vector<int>& height) {
 				{
 					result = result + (maxcount *(height[i] - max));
 				}
+
+				// start the new iteration onceyou hit biggest wall from the last
 				max = height[i];
+				min = height[i];
 				maxcount = 0;
 			}
 		}
