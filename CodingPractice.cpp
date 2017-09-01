@@ -14,55 +14,54 @@
 
 using namespace std;
 
-//TrappingWater
-int Solution42(vector<int>& height) {
 
-	int result=0;
-	int min , max;
-	int maxcount = 0;
+int TrapWater(vector<int> height)
+{
+	int result = 0;
+	int lastResult = 0;
+	int min, max;
+	int betweencount = 0;
 
-	if (height.size > 1)
+	if (height.size() > 1)
 	{
 		min = max = height[0];
 
-		for (int i = 0;i < height.size();i++)
+		for (int i = 1;i < height.size();i++)
 		{
+			
+			betweencount++;
 			if (min<height[i])
 			{
 				min = height[i];
 				result = result + (min - height[i]);
-				maxcount++;
 			}
 
-			if (max>height[i])
+			if (max >= height[i])
 			{
-				if (maxcount > 0)
-				{
-					result = result + (maxcount *(height[i] - max));
-				}
-
-				// start the new iteration onceyou hit biggest wall from the last
-				max = height[i];
-				min = height[i];
-				maxcount = 0;
-			}
-
-			if (max == height[i])
-			{
-				if (maxcount > 0)
-				{
-					result = result + (maxcount *(height[i] - max));
-				}
-
-				// start the new iteration onceyou hit biggest wall from the last
-				max = height[i];
-				min = height[i];
-				maxcount = 0;
+				vector<int> temp(height.begin() + i - betweencount, height.begin() +i);
+				result = lastResult + TrapWater(temp);
+				lastResult = result;
+				betweencount = 0;
+				min = max = height[i];
 			}
 		}
 	}
 
+	else
+	{
+		return 0;
+	}
+
 	return result;
+
+}
+
+//TrappingWater
+// do this recursively- try
+int Solution42(vector<int>& height) {
+
+return TrapWater(height);
+
 
 }
 
