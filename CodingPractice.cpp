@@ -14,6 +14,21 @@
 
 using namespace std;
 
+//first missing positive
+void Solution41()
+{
+	vector <int> input;
+	vector <int> sort;
+	int result;
+	int min, max;
+	if (input.size() > 0)
+	{
+		min = max = input[0];
+	}
+
+
+
+}
 
 int TrapWater(vector<int> height)
 {
