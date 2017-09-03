@@ -30,13 +30,13 @@ int TrapWater(vector<int> height)
 		{
 			
 			betweencount++;
-			if (min<height[i])
+			if (min>height[i])
 			{
-				min = height[i];
 				result = result + (min - height[i]);
+				min = height[i];
 			}
 
-			if (max >= height[i])
+			if (max <= height[i])
 			{
 				vector<int> temp(height.begin() + i - betweencount, height.begin() +i);
 				result = lastResult + TrapWater(temp);
@@ -58,7 +58,22 @@ int TrapWater(vector<int> height)
 
 //TrappingWater
 // do this recursively- try
-int Solution42(vector<int>& height) {
+int Solution42() {
+	//[0,1,0,2,1,0,1,3,2,1,2,1]
+	vector<int> height;
+	height.push_back(0);
+	height.push_back(1);
+	height.push_back(0);
+	height.push_back(2);
+	height.push_back(1);
+	height.push_back(0);
+	height.push_back(1);
+	height.push_back(3);
+	height.push_back(2);
+	height.push_back(1);
+	height.push_back(2);
+	height.push_back(1);
+
 
 return TrapWater(height);
 
@@ -2017,11 +2032,13 @@ int main()
 
 	//Soution25();
 
-	vector <string> inputs;
-	inputs.push_back("foo");
-	inputs.push_back("bar");
+	//vector <string> inputs;
+	//inputs.push_back("foo");
+	//inputs.push_back("bar");
 
-	Solution30("barfoothefoobarman", inputs);
+	//Solution30("barfoothefoobarman", inputs);
+
+	Solution42();
 
 	
 
