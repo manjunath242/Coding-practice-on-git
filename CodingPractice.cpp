@@ -18,12 +18,34 @@ using namespace std;
 void Solution41()
 {
 	vector <int> input;
-	vector <int> sort;
+    int siz = input.size();
+	vector <int> sort(siz);
 	int result;
 	int min, max;
 	if (input.size() > 0)
 	{
 		min = max = input[0];
+		for (int i = 0;i < input.size();i++)
+		{
+			if (min > input[i])
+			{
+				min = input[i];
+			}
+
+			if (max < input[i])
+			{
+				max = input[i];
+			}
+		}
+
+		for (int i = 0;i < sort.size();i++)
+		{
+
+		}
+
+		
+
+
 	}
 
 
