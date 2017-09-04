@@ -15,16 +15,16 @@
 using namespace std;
 
 //first missing positive
-void Solution41()
+int Solution41()
 {
 	vector <int> input;
-    int siz = input.size();
-	vector <int> sort(siz);
+	vector <int> filterinput;
 	int result;
 	int min, max;
+	int range;
 	if (input.size() > 0)
 	{
-		min = max = input[0];
+		min = max = 0;
 		for (int i = 0;i < input.size();i++)
 		{
 			if (min > input[i])
@@ -36,19 +36,31 @@ void Solution41()
 			{
 				max = input[i];
 			}
+
+			if (input[i]>=0)
+			{
+				filterinput.push_back(input[i]);
+			}
 		}
 
-		for (int i = 0;i < sort.size();i++)
+		range = max - min;
+		vector <int> sort(range);
+
+		for (int i = 0;i < filterinput.size();i++)
 		{
-
+			sort[(filterinput[i]-(min))] = filterinput[i];
 		}
 
-		
-
-
+		for (int i = 0;i<sort.size();i++)
+		{
+			if (sort[i] == NULL)
+			{
+				return i;
+			}
+		}
 	}
 
-
+	return 0;
 
 }
 
