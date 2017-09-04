@@ -18,21 +18,34 @@ using namespace std;
 int Solution41()
 {
 	vector <int> input;
+
+	input.push_back(1);
+	input.push_back(2);
+	input.push_back(3);
+	input.push_back(5);
+
 	vector <int> filterinput;
 	int result;
 	int min, max;
+	bool minmaxSet = false;
 	int range;
 	if (input.size() > 0)
 	{
 		min = max = 0;
 		for (int i = 0;i < input.size();i++)
 		{
-			if (min > input[i])
+			if (!minmaxSet && input[i] >= 0)
+			{
+				min = max = input[i];
+				minmaxSet = true;
+			}
+
+			if (min > input[i] && minmaxSet)
 			{
 				min = input[i];
 			}
 
-			if (max < input[i])
+			if (max < input[i] && minmaxSet)
 			{
 				max = input[i];
 			}
@@ -2087,7 +2100,9 @@ int main()
 
 	//Solution30("barfoothefoobarman", inputs);
 
-	Solution42();
+	//Solution42();
+
+	Solution41();
 
 	
 
