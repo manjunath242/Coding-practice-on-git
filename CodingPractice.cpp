@@ -56,7 +56,7 @@ int Solution41()
 			}
 		}
 
-		range = max - min;
+		range = max - min+1;
 		vector <int> sort(range);
 
 		for (int i = 0;i < filterinput.size();i++)
@@ -64,12 +64,17 @@ int Solution41()
 			sort[(filterinput[i]-(min))] = filterinput[i];
 		}
 
-		for (int i = 0;i<sort.size();i++)
+		int lastValue = sort[0];
+
+		for (int i = 1;i<sort.size();i++)
 		{
-			if (sort[i] == NULL)
-			{
-				return i;
-			}
+
+				if (sort[i] != lastValue + 1)
+				{
+					return (lastValue + 1);
+				}
+
+			lastValue++;
 		}
 	}
 
