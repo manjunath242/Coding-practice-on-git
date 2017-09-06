@@ -14,6 +14,24 @@
 
 using namespace std;
 
+
+//group anagrams
+
+void Solution49()
+{
+	vector<string> input;
+	vector<vector<string>> result;
+
+	for (int i = 0;i < input.size();i++)
+	{
+		for (int j = 0;j < result.size();j++)
+		{
+
+		}
+	}
+
+}
+
 //first missing positive
 int Solution41()
 {
