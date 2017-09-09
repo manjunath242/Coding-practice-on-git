@@ -15,6 +15,34 @@
 using namespace std;
 
 
+vector<int> Permutation(vector<int> numbers)
+{
+	vector<int> temp;
+
+	if (numbers.size() == 1)
+	{
+		temp.push_back(numbers[0]);
+	}
+	else
+	{
+		for (int i = 0;i < numbers.size();i++)
+		{
+			temp.push_back(i);
+		}
+	}
+
+}
+
+//permutation
+void Solution46()
+{
+	vector<int> numbers;
+	for(int i=0i<)
+
+
+
+}
+
 //group anagrams
 
 void Solution49()
