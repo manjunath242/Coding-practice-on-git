@@ -7,6 +7,8 @@
 #include <vector>
 #include <numeric> // for std::accumulate
 #include<math.h>
+#include <sstream>
+#include <unordered_map>
 
 //leetcode
 #include "Solution2.h"
@@ -14,6 +16,84 @@
 
 using namespace std;
 
+//mappingProblem
+unordered_map<string,int> rankmap;
+unordered_map<string, vector<string>> temp;
+
+int maxrank = 0;
+
+
+ vector<vector<string>> stepsFunction;
+void Funcall(string event, int rank);
+
+void MappingSol()
+{
+	
+	
+	vector<vector<string>> result;
+
+	vector<string> currentSet;
+	for (int i = 0;i < stepsFunction.size();i++)
+	{
+		if (temp.count(stepsFunction[i][0]))
+		{
+			currentSet = temp[stepsFunction[i][0]];
+		}
+
+			currentSet.push_back(stepsFunction[i][1]);
+			temp[stepsFunction[i][0]] = currentSet;
+	}
+
+	for (unordered_map<string, vector<string>  >::const_iterator iter = temp.begin();
+	iter != temp.end(); ++iter)
+	{
+		Funcall(iter->first, 0);
+	}
+
+	vector<string> row;
+	for (int i = 0;i < maxrank;i++)
+	{
+		result.push_back(row);
+	}
+	for (unordered_map<string, int  >::const_iterator iter = rankmap.begin();
+	iter != rankmap.end(); ++iter)
+	{	int position = iter->second;
+		row = result[position];
+		row.push_back(iter->first);
+		result[position] = row;
+	}
+	return ;
+}
+
+void Funcall(string event, int rank)
+{
+	vector<string> events;
+
+	if (rank > maxrank) maxrank = rank;
+	if (!temp.count(event))
+	{
+		return;
+	}
+	else
+	{		rank++;
+		for (int i = 0;i < temp[event].size();i++)
+		{
+			if (rank > rankmap[event])
+				rankmap[event] = rank;
+			Funcall(temp[event][i], rank);
+		}
+	}
+}
+
+
+
+
+
+//1234, 2341, 3412, 4123
+//2134, 1342, 3421, 4213
+//3124, 1243, 2431, 4312
+//1324, 3241, 2413, 4132
+//
 
 vector<int> Permutation(vector<int> numbers)
 {
@@ -31,13 +111,15 @@ vector<int> Permutation(vector<int> numbers)
 		}
 	}
 
+	return temp;
+
 }
 
 //permutation
 void Solution46()
 {
 	vector<int> numbers;
-	for(int i=0i<)
+
 
 
 
@@ -2161,9 +2243,28 @@ int main()
 
 	//Solution42();
 
-	Solution41();
+	//Solution41();
 
-	
+	vector<vector<string>> employees;
+	vector<string> empin;
+
+	empin.push_back("1,Richard,Engineering");
+	empin.push_back("2,Erlich,HR");
+	empin.push_back("3,Monica,Business");
+	empin.push_back("4,Dinesh,Engineering");
+	empin.push_back("6,Carla,Engineering" );
+	empin.push_back("9,Laurie,Directors");
+	employees.push_back(empin);
+
+	vector<vector<string>> friendships;
+	 vector<string> friends;
+
+	 friends.push_back("1,2");
+	 friends.push_back("1,3");
+	 friends.push_back("1,6");
+	 friends.push_back("2,4");
+
+	 friendships.push_back(friends);
 
 
     return 0;
