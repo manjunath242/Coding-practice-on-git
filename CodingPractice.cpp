@@ -18,7 +18,6 @@ using namespace std;
 
 
 //hrank mock
-
 void MoveZeros()
 {
 	vector<int> nums;
