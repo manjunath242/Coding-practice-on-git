@@ -16,6 +16,28 @@
 
 using namespace std;
 
+
+//hrank mock
+
+void MoveZeros()
+{
+	vector<int> nums;
+	int *p1, *p2;
+	int zerocount = 0;
+	if (nums.size() > 1)
+	{
+		p1 = &nums[0];
+		p2 = &nums[1];
+
+		while (p2 != &nums[nums.size() - 1])
+		{
+			//if()
+		}
+	}
+
+}
+
+
 //mappingProblem
 unordered_map<string,int> rankmap;
 unordered_map<string, vector<string>> temp;
