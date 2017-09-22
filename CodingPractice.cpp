@@ -69,8 +69,6 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 
 					}
 				}
-
-
 				if (temp == 'z')
 				{
 					temp = 'a';
@@ -80,7 +78,6 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 				{
 					temp++;
 				}
-
 			}
 
 		}
