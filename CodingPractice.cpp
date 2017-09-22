@@ -26,9 +26,7 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 
 	for (int i = 0;i<strings.size();i++)
 	{
-
 		char temp = strings[i][0];
-
 		for (int j = 0;j<strings[i].size();j++)
 		{
 			if (temp != strings[i][j])
@@ -39,7 +37,6 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 					row = resultmap[strings[i].size() * 10];
 					row.push_back(strings[i]);
 					resultmap[strings[i].size() * 10] = row;
-
 				}
 
 				else {
@@ -61,8 +58,6 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 						resultmap[strings[i].size()] = row;
 
 					}
-
-
 					else {
 						row.push_back(strings[i]);
 						resultmap.insert(std::make_pair(strings[i].size(), row));
@@ -73,7 +68,6 @@ vector<vector<string>> groupStrings(vector<string>& strings) {
 				{
 					temp = 'a';
 				}
-
 				else
 				{
 					temp++;
