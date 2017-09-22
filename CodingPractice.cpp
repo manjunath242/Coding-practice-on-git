@@ -17,6 +17,84 @@
 using namespace std;
 
 
+//solution249
+vector<vector<string>> groupStrings(vector<string>& strings) {
+
+	vector<vector<string>> result;
+	std::unordered_map<int, vector<string>> resultmap;
+
+
+	for (int i = 0;i<strings.size();i++)
+	{
+
+		char temp = strings[i][0];
+
+		for (int j = 0;j<strings[i].size();j++)
+		{
+			if (temp != strings[i][j])
+			{
+				vector<string> row;
+				if (resultmap.count(strings[i].size() * 10) == 1)
+				{
+					row = resultmap[strings[i].size() * 10];
+					row.push_back(strings[i]);
+					resultmap[strings[i].size() * 10] = row;
+
+				}
+
+				else {
+					row.push_back(strings[i]);
+					resultmap.insert(std::make_pair(strings[i].size() * 10, row));
+				}
+				break;
+			}
+			else
+			{
+				if (j == strings[i].size() - 1)
+				{
+					vector<string> row;
+
+					if (resultmap.count(strings[i].size()) == 1)
+					{
+						row = resultmap[strings[i].size()];
+						row.push_back(strings[i]);
+						resultmap[strings[i].size()] = row;
+
+					}
+
+
+					else {
+						row.push_back(strings[i]);
+						resultmap.insert(std::make_pair(strings[i].size(), row));
+
+					}
+				}
+
+
+				if (temp == 'z')
+				{
+					temp = 'a';
+				}
+
+				else
+				{
+					temp++;
+				}
+
+			}
+
+		}
+
+	}
+
+
+	for (auto it = resultmap.begin(); it != resultmap.end(); ++it)
+		result.push_back(it->second);
+
+	return result;
+
+}
+
 //hrank mock
 void MoveZeros()
 {
