@@ -1,6 +1,5 @@
 // CodingPractice.cpp : Defines the entry point for the console application.
 //
-
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -15,6 +14,15 @@
 #include "Solution4.h"
 
 using namespace std;
+
+
+//Sorted BST problem
+struct TreeNode
+{
+	TreeNode * left;
+	TreeNode * right;
+	int value;
+};
 
 
 //solution249
