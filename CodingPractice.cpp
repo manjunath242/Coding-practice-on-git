@@ -24,6 +24,34 @@ struct TreeNode
 	int value;
 };
 
+TreeNode* FormHeightBalancedBST(TreeNode* root,vector<int> sortedInput)
+{
+	int mid = sortedInput.size() / 2;
+	vector<int> newSortedInput = vector<int>(sortedInput.begin(), sortedInput.begin() + mid);
+
+	if (sortedInput.size() == 1)
+	{
+		return;
+	}
+
+	if (sortedInput.size() == 1)
+	{
+		return;
+	}
+
+	else
+	{
+		root
+
+	}
+
+
+
+
+
+}
+
+
 
 //solution249
 vector<vector<string>> groupStrings(vector<string>& strings) {
