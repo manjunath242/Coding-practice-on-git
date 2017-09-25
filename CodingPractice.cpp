@@ -17,32 +17,50 @@ using namespace std;
 
 
 //Sorted BST problem
-struct TreeNode
-{
-	TreeNode * left;
-	TreeNode * right;
-	int value;
+ struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+	
 };
 
 TreeNode* FormHeightBalancedBST(TreeNode* root,vector<int> sortedInput)
 {
-	int mid = sortedInput.size() / 2;
-	vector<int> newSortedInput = vector<int>(sortedInput.begin(), sortedInput.begin() + mid);
+	int mid;
+	TreeNode* tr;
 
-	if (sortedInput.size() == 1)
+	if (sortedInput.size() % 2 == 0)
 	{
-		return;
+		mid = sortedInput.size() / 2;
+	}
+	else
+	{
+		mid = (sortedInput.size() / 2)+1;
 	}
 
+	 
+	vector<int> newSortedInputL = vector<int>(sortedInput.begin(), sortedInput.begin() + mid);
+	vector<int> newSortedInputR = vector<int>(sortedInput.begin() + mid+1, sortedInput.end());
+
 	if (sortedInput.size() == 1)
 	{
-		return;
+		root = new TreeNode(sortedInput[0]);
+		return root;
+	}
+
+	else if (sortedInput.size() == 2)
+	{
+		root->left = new TreeNode(sortedInput[0]);
+		root->right = new TreeNode(sortedInput[1]);
 	}
 
 	else
 	{
-		root
+		 FormHeightBalancedBST(root->left, newSortedInputL);
+		 FormHeightBalancedBST(root->right, newSortedInputR);
 
+		 return root;
 	}
 
 
