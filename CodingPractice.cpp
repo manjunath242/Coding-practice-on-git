@@ -15,6 +15,67 @@
 
 using namespace std;
 
+//Dictionary problem
+
+string alienOrder(vector<string>& words) {
+
+	std::unordered_map<std::char, int> letters;
+	int reference;
+
+	for (int i = 0;i<words.size();i++)
+	{
+		for (int j = 0;j = words[i].size();j++)
+		{
+			if (words[i].size()<2)
+			{
+				break;
+			}
+
+			if (j<(words[i].size() - 2))
+			{
+
+				reference = j + 1;
+
+				while (reference<words[i].size())
+				{
+
+					if ((letters.count(words[i][reference]) > 0) && (letters.count(words[i][j]) > 0))
+					{
+						continue;
+					}
+
+					else
+					{
+						if ((letters.count(words[i][j]) > 0) && (letters.count(words[i][j]) == 0))
+						{
+
+						}
+
+						else if ((letters.count(words[i][j]) == 0) && (letters.count(words[i][j]) > 0))
+						{
+
+						}
+
+						else
+						{
+
+						}
+					}
+					reference++;
+				}
+
+
+
+
+
+			}
+
+		}
+
+	}
+}
+
+
 
 //Sorted BST problem
  struct TreeNode {
