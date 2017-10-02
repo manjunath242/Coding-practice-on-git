@@ -54,6 +54,7 @@ using namespace std;
 			istringstream(forth) >> v22;
 		}
 
+		//compare logic to send proper result
 		if (v1>v2)
 		{
 			return 1;
