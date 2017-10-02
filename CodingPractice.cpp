@@ -15,11 +15,78 @@
 
 using namespace std;
 
-//Dictionary problem
+	int compareVersion(string version1, string version2) {
 
+		int v1 = 0, v11 = 0, v2 = 0, v22 = 0;
+
+
+		string::iterator iter1 = find(version1.begin(), version1.end(), '.');
+		string first(version1.begin(), iter1);
+		string second(iter1 + 1, version1.end());
+
+
+		if (first != "")
+		{
+			istringstream(first) >> v1;
+		}
+
+		else
+		{
+			istringstream(version1) >> v1;
+		}
+
+		if (second != "")
+		{
+			istringstream(second) >> v11;
+		}
+
+
+		string::iterator iter2 = find(version2.begin(), version2.end(), '.');
+		string third(version2.begin(), iter2);
+		string forth(iter2 + 1, version2.end());
+
+
+		if (third != "")
+		{
+			istringstream(third) >> v2;
+		}
+
+		if (forth != "")
+		{
+			istringstream(forth) >> v22;
+		}
+
+		if (v1>v2)
+		{
+			return 1;
+		}
+
+		else if (v1 == v2)
+		{
+			if (v11>v22)
+			{
+				return 1;
+			}
+			else if (v11 == v22)
+			{
+				return 0;
+			}
+			else
+			{
+				return -1;
+			}
+		}
+
+		else return -1;
+
+	}
+
+
+
+//Dictionary problem
 string alienOrder(vector<string>& words) {
 
-	std::unordered_map<std::char, int> letters;
+	std::unordered_map<char, int> letters;
 	int reference;
 
 	for (int i = 0;i<words.size();i++)
@@ -71,6 +138,8 @@ string alienOrder(vector<string>& words) {
 		}
 
 	}
+
+	return "";
 }
 
 
