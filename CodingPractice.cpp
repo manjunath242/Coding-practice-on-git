@@ -18,13 +18,11 @@ using namespace std;
 	int compareVersion(string version1, string version2) {
 
 		int v1 = 0, v11 = 0, v2 = 0, v22 = 0;
-
-
 		string::iterator iter1 = find(version1.begin(), version1.end(), '.');
 		string first(version1.begin(), iter1);
 		string second(iter1 + 1, version1.end());
 
-
+		// get values for v1 and v2
 		if (first != "")
 		{
 			istringstream(first) >> v1;
