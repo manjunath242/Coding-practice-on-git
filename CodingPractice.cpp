@@ -15,68 +15,118 @@
 
 using namespace std;
 
+struct Interval {
+	int start;
+	int end;
+	Interval() : start(0), end(0) {}
+	Interval(int s, int e) : start(s), end(e) {}
+	
+};
+
+int minMeetingRooms() {
+
+	Interval int1(9,10);
+	Interval int2(4,9);
+	Interval int3(4, 17);
+
+	vector<Interval> intervals;
+	vector<vector<Interval>> rooms;
+
+	intervals.push_back(int1);
+	intervals.push_back(int2);
+	intervals.push_back(int3);
+
+	int result = 0;
+
+	if (intervals.size() != 0)
+	{
+		result = 1;
+	}
+
+	for (int i = 0;i<intervals.size();i++)
+	{
+
+		for (int j = (i + 1);j<intervals.size();j++)
+		{
+			if ((intervals[i].start<intervals[j].end) && (intervals[i].end > intervals[j].start))
+			{
+				result++;
+			}
+
+		}
+	}
+
+	return result;
+
+}
+
+
 	int compareVersion(string version1, string version2) {
 
-		int v1 = 0, v11 = 0, v2 = 0, v22 = 0;
-		string::iterator iter1 = find(version1.begin(), version1.end(), '.');
-		string first(version1.begin(), iter1);
-		string second(iter1 + 1, version1.end());
+		//int v1 = 0, v11 = 0, v2 = 0, v22 = 0;
+		//string second;
+		//string::iterator iter1 = find(version1.begin(), version1.end(), '.');
+		//string first(version1.begin(), iter1);
 
-		// get values for v1 and v2
-		if (first != "")
-		{
-			istringstream(first) >> v1;
-		}
+		//if (iter1 != version1.end())
+		//{
+		//}
+		//string second(iter1 + 1, version1.end());
 
-		else
-		{
-			istringstream(version1) >> v1;
-		}
+		//// get values for v1 and v2
+		//if (first != "")
+		//{
+		//	istringstream(first) >> v1;
+		//}
 
-		if (second != "")
-		{
-			istringstream(second) >> v11;
-		}
+		//else
+		//{
+		//	istringstream(version1) >> v1;
+		//}
 
+		//if (second != "")
+		//{
+		//	istringstream(second) >> v11;
+		//}
 
-		string::iterator iter2 = find(version2.begin(), version2.end(), '.');
-		string third(version2.begin(), iter2);
-		string forth(iter2 + 1, version2.end());
+		//string::iterator iter2 = find(version2.begin(), version2.end(), '.');
+		//string third(version2.begin(), iter2);
+		//string forth(iter2 + 1, version2.end());
 
+		//if (third != "")
+		//{
+		//	istringstream(third) >> v2;
+		//}
 
-		if (third != "")
-		{
-			istringstream(third) >> v2;
-		}
+		//if (forth != "")
+		//{
+		//	istringstream(forth) >> v22;
+		//}
 
-		if (forth != "")
-		{
-			istringstream(forth) >> v22;
-		}
+		////compare logic to send proper result
+		//if (v1>v2)
+		//{
+		//	return 1;
+		//}
 
-		//compare logic to send proper result
-		if (v1>v2)
-		{
-			return 1;
-		}
+		//else if (v1 == v2)
+		//{
+		//	if (v11>v22)
+		//	{
+		//		return 1;
+		//	}
+		//	else if (v11 == v22)
+		//	{
+		//		return 0;
+		//	}
+		//	else
+		//	{
+		//		return -1;
+		//	}
+		//}
 
-		else if (v1 == v2)
-		{
-			if (v11>v22)
-			{
-				return 1;
-			}
-			else if (v11 == v22)
-			{
-				return 0;
-			}
-			else
-			{
-				return -1;
-			}
-		}
-
-		else return -1;
+		//else return -1;
+		return 0;
 
 	}
 
@@ -2516,26 +2566,30 @@ int main()
 
 	//Solution41();
 
-	vector<vector<string>> employees;
-	vector<string> empin;
+	//vector<vector<string>> employees;
+	//vector<string> empin;
 
-	empin.push_back("1,Richard,Engineering");
-	empin.push_back("2,Erlich,HR");
-	empin.push_back("3,Monica,Business");
-	empin.push_back("4,Dinesh,Engineering");
-	empin.push_back("6,Carla,Engineering" );
-	empin.push_back("9,Laurie,Directors");
-	employees.push_back(empin);
+	//empin.push_back("1,Richard,Engineering");
+	//empin.push_back("2,Erlich,HR");
+	//empin.push_back("3,Monica,Business");
+	//empin.push_back("4,Dinesh,Engineering");
+	//empin.push_back("6,Carla,Engineering" );
+	//empin.push_back("9,Laurie,Directors");
+	//employees.push_back(empin);
 
-	vector<vector<string>> friendships;
-	 vector<string> friends;
+	//vector<vector<string>> friendships;
+	// vector<string> friends;
 
-	 friends.push_back("1,2");
-	 friends.push_back("1,3");
-	 friends.push_back("1,6");
-	 friends.push_back("2,4");
+	// friends.push_back("1,2");
+	// friends.push_back("1,3");
+	// friends.push_back("1,6");
+	// friends.push_back("2,4");
 
-	 friendships.push_back(friends);
+	// friendships.push_back(friends);
+
+	//compareVersion("1","2");
+
+	minMeetingRooms();
 
 
     return 0;
