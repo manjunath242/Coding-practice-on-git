@@ -16,6 +16,43 @@
 using namespace std;
 
 
+//first no duplicate
+char firstNotRepeatingCharacter(std::string s) {
+
+	char temp;
+	unordered_map<char, int> counterMap;
+
+	for (int i = 0;i<s.size();i++)
+	{
+		if (counterMap.count(s[i]) == 0)
+		{
+			counterMap[s[i]] = 1;
+		}
+
+		else if (counterMap.count(s[i]) == 1)
+		{
+			counterMap[s[i]] = 2;
+		}
+
+	}
+
+
+	for (int i = 0;i<s.size();i++)
+	{
+
+		if (counterMap[s[i]] == 1)
+		{
+			return s[i];
+		}
+
+	}
+
+
+	return '_';
+
+}
+
+
 //codefights //O(1) space, O(n)
 int firstDuplicate(std::vector<int> a) {
 
