@@ -15,6 +15,54 @@
 
 using namespace std;
 
+
+//codefights //O(1) space, O(n)
+int firstDuplicate(std::vector<int> a) {
+
+	unordered_map<int, int> countMap;
+	int temp;
+
+	for (int i = 0;i<10;i++)
+	{
+		countMap[i] = 0;
+	}
+
+	for (int i = 0;i<a.size();i++)
+	{
+		temp = countMap[a[i]];
+		if (temp == 0)
+		{
+			temp++;
+			countMap[a[i]] = 1;
+		}
+		else
+		{
+			return a[i];
+		}
+
+	}
+
+	return -1;
+
+}
+
+
+void Prob1()
+{
+	vector<int> nums;
+	std::unordered_map<int, vector<int>> BinariesMap;
+
+	//for (int i = 0;i < nums.size();i++)
+	//{
+	//	std::string str = std::bitset<8>(nums[i]).to_string();
+	//}
+
+	
+
+}
+
+
+
 struct Interval {
 	int start;
 	int end;
