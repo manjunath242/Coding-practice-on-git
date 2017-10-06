@@ -1,6 +1,4 @@
 // CodingPractice.cpp : Defines the entry point for the console application.
-//
-#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,12 +6,41 @@
 #include<math.h>
 #include <sstream>
 #include <unordered_map>
+#include <sstream>
+#include <fstream>
 
 //leetcode
 #include "Solution2.h"
 #include "Solution4.h"
 
 using namespace std;
+
+//Microsft challenge my solution
+
+void MSoftChallenge()
+{
+	//matrix transpose
+
+	std::string line;
+	std::ifstream infile("input1.txt");
+	vector<vector<int>> matrix;
+
+
+	while (std::getline(infile, line))  // this does the checking!
+	{
+		std::istringstream iss(line);
+		char c=' ';
+
+		while (iss >> c)
+		{
+			int value = c - '0';
+			// process value
+		}
+	}
+
+
+}
+
 
 
 //first no duplicate
