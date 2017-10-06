@@ -1,4 +1,5 @@
 // CodingPractice.cpp : Defines the entry point for the console application.
+#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,13 +17,14 @@
 using namespace std;
 
 
-std::vector<std::vector<int>> rotateImage(std::vector<std::vector<int>> a) {
-
-	return Transform(a, 0, a.size() - 1);
-
+void SwapValues(int &a, int &b)
+{
+	int c = a;
+	a = b;
+	b = c;
 }
 
-std::vector<std::vector<int>> Transform(std::vector<std::vector<int>> & a, int k, int l)
+std::vector<std::vector<int>> Transformmat(std::vector<std::vector<int>> & a, int k, int l)
 {
 
 	if (k == l)
@@ -32,8 +34,10 @@ std::vector<std::vector<int>> Transform(std::vector<std::vector<int>> & a, int k
 
 	for (int i = k;i<a.size();i++)
 	{
-		for (int j = l;j<a[i].size;j++)
+		for (int j = l;j<a[i].size();j++)
 		{
+			int * x, *y;
+
 			if (i == k)
 			{
 				SwapValues(a[k][j], a[j][k]);
@@ -51,22 +55,45 @@ std::vector<std::vector<int>> Transform(std::vector<std::vector<int>> & a, int k
 				SwapValues(a[i][l], a[l][i]);
 			}
 
-			k++;
-			l--;
-
-			return Transform(a, k, l);
 		}
+
+		k++;
+		l--;
+
+		return Transformmat(a, k, l);
 	}
 
 }
 
-void SwapValues(int &a, int &b)
-{
-	int c = a;
-	a = b;
-	b = c;
-}
 
+//rotate image problem
+vector<vector<int>> rotateImage() {
+
+	vector<vector<int>> a;
+
+	vector<int> row1;
+	vector<int> row2;
+	vector<int> row3;
+	row1.push_back(1);
+	row1.push_back(2);
+	row1.push_back(3);
+	a.push_back(row1);
+
+	row2.push_back(4);
+	row2.push_back(5);
+	row2.push_back(6);
+	a.push_back(row2);
+
+	row3.push_back(7);
+	row3.push_back(8);
+	row3.push_back(9);
+	a.push_back(row3);
+
+	Transformmat(a, 0, a.size() - 1);
+
+ return a;
+
+}
 
 
 
@@ -2756,7 +2783,9 @@ int main()
 
 	//compareVersion("1","2");
 
-	minMeetingRooms();
+	//minMeetingRooms();
+
+	rotateImage();
 
 
     return 0;
