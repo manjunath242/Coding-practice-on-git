@@ -15,6 +15,61 @@
 
 using namespace std;
 
+
+std::vector<std::vector<int>> rotateImage(std::vector<std::vector<int>> a) {
+
+	return Transform(a, 0, a.size() - 1);
+
+}
+
+std::vector<std::vector<int>> Transform(std::vector<std::vector<int>> & a, int k, int l)
+{
+
+	if (k == l)
+	{
+		return a;
+	}
+
+	for (int i = k;i<a.size();i++)
+	{
+		for (int j = l;j<a[i].size;j++)
+		{
+			if (i == k)
+			{
+				SwapValues(a[k][j], a[j][k]);
+
+			}
+
+			if (i == k + 1)
+			{
+				SwapValues(a[i][j], a[j][i]);
+			}
+
+
+			if (i == l)
+			{
+				SwapValues(a[i][l], a[l][i]);
+			}
+
+			k++;
+			l--;
+
+			return Transform(a, k, l);
+		}
+	}
+
+}
+
+void SwapValues(int &a, int &b)
+{
+	int c = a;
+	a = b;
+	b = c;
+}
+
+
+
+
 //Microsft challenge my solution
 
 void MSoftChallenge()
